@@ -1,6 +1,6 @@
 # SLATE Catalog Incubator Helm Charts
 
-![CI](https://github.com/slateci/slate-catalog-incubator/actions/workflows/release.yml/badge.svg?branch=master&event=push)
+![CI/CD](https://github.com/slateci/slate-catalog-incubator/actions/workflows/release.yml/badge.svg?branch=master&event=push)
 
 
 ## Overview
