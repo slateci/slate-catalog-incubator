@@ -1,6 +1,6 @@
 # SLATE Helm Incubator Charts
 
-![CI](https://github.com/slateci/slate-helm-incubator/workflows/CI/badge.svg?branch=master&event=push)
+![CI](https://github.com/slateci/slate-helm-incubator/actions/workflows/release.yml/badge.svg?branch=master&event=push)
 
 
 ## Overview
