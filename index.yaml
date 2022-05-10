@@ -3,6 +3,20 @@ entries:
   applications-onboarding:
   - apiVersion: v1
     appVersion: 1.0.0
+    created: "2022-05-10T22:47:43.017767074Z"
+    description: A simple tutorial for learning kubernetes and helm basics to begin
+      contributing to SLATE
+    digest: 4af56f956a155e0285e0b7190ed0c3a28ce90298ed35ce5e5a9a8f5ac95e1a5e
+    maintainers:
+    - email: slateci@googlegroups.com
+      name: slateci
+      url: https://slateci.io/
+    name: applications-onboarding
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/applications-onboarding-1.0.3/applications-onboarding-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: 1.0.0
     created: "2022-05-10T22:20:30.325443741Z"
     description: A simple tutorial for learning kubernetes and helm basics to begin
       contributing to SLATE
@@ -42,6 +56,28 @@ entries:
     urls:
     - https://github.com/slateci/slate-helm-incubator/releases/download/basic-auth-0.1.7/basic-auth-0.1.7.tgz
     version: 0.1.7
+  check-mk:
+  - apiVersion: v1
+    appVersion: 1.4.0p26
+    created: "2022-05-10T22:47:43.127620695Z"
+    description: check_mk monitoring
+    digest: ea1df2768c54c9b7b23f3541b25a8b72a38512685e1b56b699cdeee79599e883
+    home: https://mathias-kettner.de/check_mk.html
+    icon: http://git.mathias-kettner.de/git/?p=check_mk.git;a=blob_plain;f=web/htdocs/images/logo_mk.png;h=f41c2227828b79c035fa2e2d3fba5ec939c6f2c3;hb=HEAD
+    keywords:
+    - check_mk
+    - nagios
+    - monitoring
+    maintainers:
+    - email: junaid18183@gmail.com
+      name: junaid18183
+    name: check-mk
+    sources:
+    - https://github.com/kubernetes/charts
+    - http://git.mathias-kettner.de/git/
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/check-mk-0.2.3/check-mk-0.2.3.tgz
+    version: 0.2.3
   mariadb:
   - apiVersion: v1
     appVersion: 10.3.22
@@ -154,4 +190,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
-generated: "2022-05-10T22:20:30.32545554Z"
+generated: "2022-05-10T22:47:43.127976097Z"
