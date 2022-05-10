@@ -1,5 +1,20 @@
 apiVersion: v1
 entries:
+  applications-onboarding:
+  - apiVersion: v1
+    appVersion: 1.0.0
+    created: "2022-05-10T22:20:30.325443741Z"
+    description: A simple tutorial for learning kubernetes and helm basics to begin
+      contributing to SLATE
+    digest: 66fefa1be2411d6ed857e3584a7e9c0dd63a51eef446a5db27db6019fd58891a
+    maintainers:
+    - email: slateci@googlegroups.com
+      name: slateci
+      url: https://slateci.io/
+    name: applications-onboarding
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/applications-onboarding-1.0.2/applications-onboarding-1.0.2.tgz
+    version: 1.0.2
   basic-auth:
   - apiVersion: v2
     appVersion: 1.0.18
@@ -139,4 +154,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
-generated: "2022-05-10T22:01:51.567422559Z"
+generated: "2022-05-10T22:20:30.32545554Z"
