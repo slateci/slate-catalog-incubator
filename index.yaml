@@ -60,4 +60,18 @@ entries:
     urls:
     - https://github.com/slateci/slate-helm-incubator/releases/download/mysql-0.10.3/mysql-0.10.3.tgz
     version: 0.10.3
-generated: "2022-05-10T17:26:32.763283136Z"
+  open-ondemand:
+  - apiVersion: v1
+    appVersion: 2.0.13
+    created: "2022-05-10T21:28:35.536270711Z"
+    description: Deploys an instance of Open OnDemand
+    digest: 74d573faf87fabfbd7372575c855209392ebb51ec5d5c701907c5143e45b5232
+    maintainers:
+    - email: slateci@googlegroups.com
+      name: slateci
+      url: https://slateci.io/
+    name: open-ondemand
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
+    version: 1.0.3
+generated: "2022-05-10T21:28:35.536510511Z"
