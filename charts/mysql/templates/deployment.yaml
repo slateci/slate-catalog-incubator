@@ -9,6 +9,11 @@ metadata:
     heritage: "{{ .Release.Service }}"
     instance: {{ .Values.Instance }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "mysql.fullname" . }}
+      instance: {{ .Values.Instance | quote }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
