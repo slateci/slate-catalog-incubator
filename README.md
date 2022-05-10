@@ -1,5 +1,8 @@
 # SLATE Helm Incubator Charts
 
+![CI](https://github.com/slateci/slate-helm-incubator/workflows/CI/badge.svg?branch=master&event=push)
+
+
 ## Overview
 
 This repository is home to the *master* and *gh-pages* branches. It uses the [chart-releaser](https://github.com/helm/chart-releaser-action) GitHub Action to package charts in `/charts` on *master* and deploy them as GitHub Releases on *gh-pages*.
