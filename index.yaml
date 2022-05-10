@@ -1,0 +1,38 @@
+apiVersion: v1
+entries:
+  basic-auth:
+  - apiVersion: v2
+    appVersion: 1.0.18
+    created: "2022-05-10T16:50:57.438552038Z"
+    description: generalized container meant to support basic Authentication through
+      SSSD integration to AD/Kerberos/LDAP
+    digest: 194d3584eec8cfb01189bec564ff776bbf66942572f134c45c229c63c856f88f
+    name: basic-auth
+    type: application
+    urls:
+    - https://github.com/slateci/slate-helm-incubator/releases/download/basic-auth-0.1.7/basic-auth-0.1.7.tgz
+    version: 0.1.7
+  mariadb:
+  - apiVersion: v1
+    appVersion: 10.3.22
+    created: "2022-05-10T16:50:57.591989177Z"
+    description: Fast, reliable, scalable, and easy to use open-source relational
+      database system. MariaDB Server is intended for mission-critical, heavy-load
+      production systems as well as for embedding into mass-deployed software. Highly
+      available MariaDB cluster.
+    digest: 4596a66d098c4e7346f004e090b745760a23eda4c8975a9d34bb2efcab90b553
+    home: https://mariadb.org
+    keywords:
+    - mariadb
+    - mysql
+    - database
+    - sql
+    - prometheus
+    name: mariadb
+    sources:
+    - https://github.com/bitnami/bitnami-docker-mariadb
+    - https://github.com/prometheus/mysqld_exporter
+    urls:
+    - https://github.com/slateci/slate-helm-incubator/releases/download/mariadb-5.0.13/mariadb-5.0.13.tgz
+    version: 5.0.13
+generated: "2022-05-10T16:50:57.591993377Z"
