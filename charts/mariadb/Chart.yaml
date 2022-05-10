@@ -14,3 +14,7 @@ sources:
 - https://github.com/bitnami/bitnami-docker-mariadb
 - https://github.com/prometheus/mysqld_exporter
 engine: gotpl
+maintainers:
+  - name: slateci
+    email: slateci@googlegroups.com
+    url: https://slateci.io/
