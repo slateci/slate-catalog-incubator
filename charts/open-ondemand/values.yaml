@@ -43,12 +43,12 @@ clusters:
         singularity_bindpath: /etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/home
         singularity_image: /opt/centos_7.sif
         tmux_bin: /usr/bin/tmux
-      basic_script: 
+      basic_script:
         - '#!/bin/bash'
         - 'set -x'
         - 'export XDG_RUNTIME_DIR=$(mktemp -d)'
         - '%s'
-      vnc_script: 
+      vnc_script:
         - '#!/bin/bash'
         - 'set -x'
         - 'export PATH="/opt/TurboVNC/bin:$PATH"'
@@ -89,7 +89,7 @@ advanced:
 # Filesystem distribution
   autofs: true
   fileSharing:
-    nfs_shares: # Use '\\' to escape a backslash character 
+    nfs_shares:  # Use '\\' to escape a backslash character
       - '* -nolock,hard,ro \\'
       - '           example.net:/foo/bar/& \\'
       - '           example.edu:/foo/bar/&'
@@ -110,4 +110,3 @@ SLATE:
   Cluster:
     DNSName: "foo.bar.example.net"
 ### SLATE-END ###
-      
