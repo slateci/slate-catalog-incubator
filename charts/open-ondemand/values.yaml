@@ -17,7 +17,7 @@ setupLDAP: true
 ldap:
   connectionURL: "ldap://ldap.example.net"
   importUsers: "true"
-  rdnLDAPAttribute:  "uid"
+  rdnLDAPAttribute: "uid"
   uuidLDAPAttribute: "uidNumber"
   userObjectClasses: "inetOrgFoo, orgBar"
   ldapSearchBase: "dc=foo,dc=bar"
