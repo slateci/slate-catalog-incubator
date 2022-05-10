@@ -19,7 +19,7 @@ rootUser:
   #   mariadb-root-password=<password>
   #   mariadb-password=<password>
   #   mariadb-replication-password=<password>
-  # And created with: 
+  # And created with:
   #   slate secret create --group <group> --cluster <cluster> \
   #     --from-env-file=mariadb-secret mariadb-secret
   credentialSecret: mariadb-secret
