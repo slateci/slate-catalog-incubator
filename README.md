@@ -1,4 +1,10 @@
-# SLATE Helm Catalog Incubator Charts
+# SLATE Helm Incubator Charts
+
+## Overview
+
+This repository is home to the *master* and *gh-pages* branches. It uses the [chart-releaser](https://github.com/helm/chart-releaser-action) GitHub Action to package charts in `/charts` on *master* and deploy them as GitHub Releases on *gh-pages*.
+
+For more information on this process see [Chart Releaser Action to Automate GitHub Page Charts](https://helm.sh/docs/howto/chart_releaser_action/).
 
 ## Usage
 
@@ -7,16 +13,21 @@ Helm's [documentation](https://helm.sh/docs) to get started.
 
 Once Helm has been set up correctly, add the repo as follows:
 
-helm repo add <alias> https://<orgname>.github.io/helm-charts
+```shell
+helm repo add slate-incubator https://https://slateci.io/slate-helm-incubator
+```
 
-If you had already added this repo earlier, run `helm repo update` to retrieve
-the latest versions of the packages.  You can then run `helm search repo
+If you had already added this repo earlier, run `helm repo update` to retrieve the latest versions of the packages. You can then run `helm search repo
 <alias>` to see the charts.
 
-To install the <chart-name> chart:
+To install the `<chart-name>` chart:
 
-    helm install my-<chart-name> <alias>/<chart-name>
+```shell
+helm install my-<chart-name> <alias>/<chart-name>
+```
 
 To uninstall the chart:
 
-    helm delete my-<chart-name>
+```shell
+helm delete my-<chart-name>
+```
