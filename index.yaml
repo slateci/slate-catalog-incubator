@@ -3,6 +3,21 @@ entries:
   basic-auth:
   - apiVersion: v2
     appVersion: 1.0.18
+    created: "2022-05-10T21:38:55.566373257Z"
+    description: generalized container meant to support basic Authentication through
+      SSSD integration to AD/Kerberos/LDAP
+    digest: baa0ea5ebcae4ddc1594427ff2f6053732dbb2204488b59ced82d1b156f15ea2
+    maintainers:
+    - email: slateci@googlegroups.com
+      name: slateci
+      url: https://slateci.io/
+    name: basic-auth
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/basic-auth-0.1.8/basic-auth-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 1.0.18
     created: "2022-05-10T16:50:57.438552038Z"
     description: generalized container meant to support basic Authentication through
       SSSD integration to AD/Kerberos/LDAP
@@ -74,4 +89,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
-generated: "2022-05-10T21:28:35.536510511Z"
+generated: "2022-05-10T21:38:55.566584458Z"
