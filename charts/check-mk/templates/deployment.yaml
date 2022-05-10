@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "check-mk.fullname" . }}
@@ -8,6 +8,11 @@ metadata:
     release: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "check-mk.name" . }}
+      instance: {{ .Values.Instance }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
