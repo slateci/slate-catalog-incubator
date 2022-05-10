@@ -35,4 +35,29 @@ entries:
     urls:
     - https://github.com/slateci/slate-helm-incubator/releases/download/mariadb-5.0.13/mariadb-5.0.13.tgz
     version: 5.0.13
-generated: "2022-05-10T16:50:57.591993377Z"
+  mysql:
+  - apiVersion: v1
+    appVersion: 5.7.14
+    created: "2022-05-10T17:26:32.763276836Z"
+    description: Fast, reliable, scalable, and easy to use open-source relational
+      database system.
+    digest: df806bdaef5c1c39c2f261b4492c48d244ade0ff4e931ea8ee3a58ec054946aa
+    home: https://www.mysql.com/
+    icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    maintainers:
+    - email: o.with@sportradar.com
+      name: olemarkus
+    - email: viglesias@google.com
+      name: viglesiasce
+    name: mysql
+    sources:
+    - https://github.com/kubernetes/charts
+    - https://github.com/docker-library/mysql
+    urls:
+    - https://github.com/slateci/slate-helm-incubator/releases/download/mysql-0.10.3/mysql-0.10.3.tgz
+    version: 0.10.3
+generated: "2022-05-10T17:26:32.763283136Z"
