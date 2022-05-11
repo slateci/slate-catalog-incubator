@@ -1,14 +1,17 @@
 
-name: Helm Repo
+name: Incubator Release
 
 on:
   push:
     branches:
       - master
 
+env:
+  HELM_VERSION: 3.8.1
+
 jobs:
   release:
-    name: Release Helm Repo
+    name: Release
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -24,7 +27,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: v3.8.1
+          version: ${{ env.HELM_VERSION }}
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.0
