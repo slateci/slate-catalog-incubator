@@ -1,0 +1,8 @@
+chart-dirs:
+  - charts
+validate-chart-schema: true
+validate-chart-values: true
+validate-maintainers: false
+validate-yaml: true
+exclude-deprecated: true
+excluded-charts: []
