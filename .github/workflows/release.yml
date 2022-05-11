@@ -6,6 +6,9 @@ on:
     branches:
       - master
 
+env:
+  HELM_VERSION: 3.8.1
+
 jobs:
   release:
     name: Release Helm Repo
@@ -24,7 +27,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: v3.8.1
+          version: ${{ env.HELM_VERSION }}
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.0
