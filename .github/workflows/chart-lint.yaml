@@ -5,9 +5,6 @@ on:
   pull_request:
     branches:
       - master
-    paths:
-      - "charts/**"
-      - ".github/workflows/chart-lint.yaml"
 
 env:
   CT_config: ct.yaml
