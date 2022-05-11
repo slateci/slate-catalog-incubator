@@ -1,5 +1,5 @@
 
-name: Helm Repo
+name: Incubator Release
 
 on:
   push:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   release:
-    name: Release Helm Repo
+    name: Release
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
