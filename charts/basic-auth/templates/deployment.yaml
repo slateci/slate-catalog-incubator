@@ -25,7 +25,7 @@ spec:
       restartPolicy: Always
       containers:        
       - name: basic-auth
-        image: "{{ .Values.harbor.hostname }}/{{ .Values.harbor.projectID }}/{{ template "basic-auth.name" . }}:{{ .Chart.AppVersion }}"
+        image: "hub.opensciencegrid.org/slate/{{ template "basic-auth.name" . }}:{{ .Chart.AppVersion }}"
         imagePullPolicy: Always
         volumeMounts: 
           - name: basic-auth-{{ .Values.Instance }}-configuration

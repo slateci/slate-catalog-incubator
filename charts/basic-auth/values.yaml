@@ -1,11 +1,6 @@
 # SLATE instance tag
 Instance: ''
 
-# harbor is the set of hostname, project id, etc. related to OSG Harbor
-harbor:
-  hostname: 'hub.opensciencegrid.org'
-  projectID: 'slate'
-
 # SSSD Configuration
 # This is an entire file which maps directly to /etc/sssd/sssd.conf
 # TODO (More Info)
