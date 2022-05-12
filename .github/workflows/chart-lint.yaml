@@ -1,3 +1,8 @@
+# Resources:
+# * https://github.com/marketplace/actions/helm-chart-testing
+# * https://github.com/helm/chart-testing-action
+# * https://redhat-cop.github.io/ci/linting-testing-helm-charts.html
+# * https://blog.ediri.io/auto-docs-test-and-release-a-helm-chart-with-github-actions
 
 name: Chart Lint
 

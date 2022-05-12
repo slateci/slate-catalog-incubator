@@ -1,5 +1,6 @@
 # SLATE Catalog Incubator Helm Charts
 
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 ![CI/CD](https://github.com/slateci/slate-catalog-incubator/actions/workflows/release.yaml/badge.svg?branch=master&event=push)
 
 ## Overview
