@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: applications-onboarding
-        image: "{{ .Values.harbor.hostname }}/{{ .Values.harbor.projectID }}/{{ template "applications-onboarding.name" . }}:{{ .Chart.AppVersion }}"
+        image: "hub.opensciencegrid.org/slate/{{ template "applications-onboarding.name" . }}:{{ .Chart.AppVersion }}"
         imagePullPolicy: Always
         ports:
         - name: http
