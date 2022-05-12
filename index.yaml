@@ -3,6 +3,20 @@ entries:
   applications-onboarding:
   - apiVersion: v1
     appVersion: 1.0.0
+    created: "2022-05-12T17:04:51.268546095Z"
+    description: A simple tutorial for learning kubernetes and helm basics to begin
+      contributing to SLATE
+    digest: 23b0f84ab8b99578ae7a5c432c778be722bdac6c4256ac8b5b57207b23be8a4a
+    maintainers:
+    - email: slateci@googlegroups.com
+      name: slateci
+      url: https://slateci.io/
+    name: applications-onboarding
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/applications-onboarding-1.0.4/applications-onboarding-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v1
+    appVersion: 1.0.0
     created: "2022-05-10T22:47:43.017767074Z"
     description: A simple tutorial for learning kubernetes and helm basics to begin
       contributing to SLATE
@@ -30,6 +44,21 @@ entries:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/applications-onboarding-1.0.2/applications-onboarding-1.0.2.tgz
     version: 1.0.2
   basic-auth:
+  - apiVersion: v2
+    appVersion: 1.0.18
+    created: "2022-05-12T17:04:51.450644112Z"
+    description: generalized container meant to support basic Authentication through
+      SSSD integration to AD/Kerberos/LDAP
+    digest: c03a7c0c5fb4cb6468c6f9e7d429210b7e0a2e71854db48c282caf3c1413c868
+    maintainers:
+    - email: slateci@googlegroups.com
+      name: slateci
+      url: https://slateci.io/
+    name: basic-auth
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/basic-auth-0.1.9/basic-auth-0.1.9.tgz
+    version: 0.1.9
   - apiVersion: v2
     appVersion: 1.0.18
     created: "2022-05-10T21:38:55.566373257Z"
@@ -190,4 +219,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
-generated: "2022-05-10T22:47:43.127976097Z"
+generated: "2022-05-12T17:04:51.450664113Z"
