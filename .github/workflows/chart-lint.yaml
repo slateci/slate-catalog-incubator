@@ -14,6 +14,7 @@ on:
 env:
   CT_config: ct.yaml
   HELM_VERSION: 3.8.1
+  PYTHON_VERSION: 3.7
 
 jobs:
   lint:
@@ -34,7 +35,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.2.1
