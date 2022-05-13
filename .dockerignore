@@ -1,0 +1,11 @@
+
+# IDE Metada
+.idea/
+.vscode/
+
+# Git
+.git*
+
+# Other
+LICENSE
+README.md
