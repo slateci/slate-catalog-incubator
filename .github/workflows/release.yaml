@@ -9,3 +9,5 @@ jobs:
   test:
     name: Test Helm Charts
     uses: slateci/github-actions/.github/workflows/chart-repo-release.yml@master
+    secrets:
+      cr_token: "${{ secrets.GITHUB_TOKEN }}"
