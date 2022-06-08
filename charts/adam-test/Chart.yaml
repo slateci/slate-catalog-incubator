@@ -2,8 +2,8 @@ apiVersion: v2
 name: adam-test
 description: A Helm chart for Kubernetes
 maintainers:
-  - name: adamhgriffith-uofu
-    email: adam.h.griffith@utah.edu
+  - name: Tutelajoke
+    email: agriffith2134@gmail.com
 
 # A chart can be either an 'application' or a 'library' chart.
 #
