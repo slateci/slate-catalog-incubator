@@ -5,7 +5,7 @@
 # the repo. Unless a later match takes precedence,
 # @slateci/catalog  will be requested for review when
 # someone opens a pull request.
-* @slateci/catalog-owner
+* @slateci/catalog-maint
 
 # Chart ownership
 /charts/adam-test/ @adamhgriffith-uofu
