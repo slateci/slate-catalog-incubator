@@ -111,6 +111,20 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/applications-onboarding-1.0.2/applications-onboarding-1.0.2.tgz
     version: 1.0.2
+  banana:
+  - apiVersion: v2
+    appVersion: 1.16.2
+    created: "2022-06-08T21:00:43.884423954Z"
+    description: A Helm chart for Kubernetes
+    digest: 6dafbc8765d88543b8f3ee35f0b17553fca0d04c208271e31ce453ab0821687c
+    maintainers:
+    - email: agriffith2134@gmail.com
+      name: Tutelajoke
+    name: banana
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/banana-0.1.2/banana-0.1.2.tgz
+    version: 0.1.2
   basic-auth:
   - apiVersion: v2
     appVersion: 1.0.18
@@ -287,4 +301,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
-generated: "2022-06-08T16:44:46.287143456Z"
+generated: "2022-06-08T21:00:43.884701056Z"
