@@ -11,4 +11,3 @@ jobs:
     uses: slateci/github-actions/.github/workflows/chart-repo-release.yml@master
     secrets:
       gh_token: "${{ secrets.GITHUB_TOKEN }}"
-      slate_api_token: "${{ secrets.SLATE_API_TOKEN }}"
