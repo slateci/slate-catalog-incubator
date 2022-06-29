@@ -10,4 +10,5 @@ jobs:
     name: Helm Repo
     uses: slateci/github-actions/.github/workflows/chart-repo-release.yml@master
     secrets:
-      cr_token: "${{ secrets.GITHUB_TOKEN }}"
+      gh_token: "${{ secrets.GITHUB_TOKEN }}"
+      slate_api_token: "${{ secrets.SLATE_API_TOKEN }}"
