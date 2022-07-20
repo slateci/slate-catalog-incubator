@@ -12,6 +12,6 @@ on:
 jobs:
   notify:
     name: Notify
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v1
     secrets:
       slate_api_token: "${{ secrets.SLATE_API_TOKEN }}"
