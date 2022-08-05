@@ -1,41 +1,30 @@
+# Based on the relaxed configuration described on https://yamllint.readthedocs.io/en/stable/configuration.html#default-configuration .
+
+extends: default
+
 rules:
   braces:
-    min-spaces-inside: 0
-    max-spaces-inside: 0
-    min-spaces-inside-empty: -1
-    max-spaces-inside-empty: -1
-  brackets:
-    min-spaces-inside: 0
-    max-spaces-inside: 0
-    min-spaces-inside-empty: -1
-    max-spaces-inside-empty: -1
-  colons:
-    max-spaces-before: 0
-    max-spaces-after: 1
-  commas:
-    max-spaces-before: 0
-    min-spaces-after: 1
-    max-spaces-after: 1
-  comments:
-    require-starting-space: true
-    min-spaces-from-content: 2
-  document-end: disable
-  document-start: disable           # No --- to start a file
-  empty-lines:
-    max: 2
-    max-start: 0
-    max-end: 0
-  hyphens:
-    max-spaces-after: 1
-  indentation:
-    spaces: consistent
-    indent-sequences: whatever      # - list indentation will handle both indentation and without
-    check-multi-line-strings: false
-  key-duplicates: enable
-  line-length: disable              # Lines can be any length
-  new-line-at-end-of-file: enable
-  new-lines:
-    type: unix
-  trailing-spaces: enable
-  truthy:
     level: warning
+    max-spaces-inside: 1
+  brackets:
+    level: warning
+    max-spaces-inside: 1
+  colons:
+    level: warning
+  commas:
+    level: warning
+  comments: disable
+  comments-indentation: disable
+  document-start: disable
+  empty-lines:
+    level: warning
+  hyphens:
+    level: warning
+  indentation:
+    level: warning
+    indent-sequences: consistent
+  line-length:
+    level: warning
+    allow-non-breakable-inline-mappings: true
+  trailing-spaces: disable
+  truthy: disable
