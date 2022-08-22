@@ -11,3 +11,15 @@ jobs:
     uses: slateci/github-actions/.github/workflows/chart-repo-release.yml@v2
     secrets:
       gh_token: "${{ secrets.GITHUB_TOKEN }}"
+
+  notifications:
+    runs-on: ubuntu-20.04
+    needs:
+      - helm-repo
+    if: ${{ always() && (needs.helm-repo.result == 'failure') }}
+
+    steps:
+      - name: Notify Slack of Failure
+        uses: slateci/github-actions/.github/actions/slack-notify-failure@v4
+        with:
+          slack_bot_token: '${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}'
