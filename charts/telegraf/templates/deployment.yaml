@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: telegraf
-          image: karlnewell/tsds-telegraf
+          image: ghcr.io/globalnoc/tsds-telegraf
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /etc/setup/
