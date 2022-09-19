@@ -288,4 +288,14 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
-generated: "2022-06-08T21:00:43.884701056Z"
+  telegraf:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2022-09-19T22:04:51.355436838Z"
+    description: Deploys an SNMP monitoring service using Telegraf.
+    digest: f40ca72a796ce81227f1e780ad992484859264fca4f580ed79e7c2fcd49c624b
+    name: telegraf
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
+    version: 0.6.0
+generated: "2022-09-19T22:04:51.355465638Z"
