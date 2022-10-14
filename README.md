@@ -13,4 +13,4 @@ Wanting to develop an application for SLATE? Check out our [Application Developm
 
 ## Managing the Catalog
 
-See the [internal documentation](https://github.com/slateci/slate-documentation/tree/master/docs/source/deployment/catalog) for more details.
+See the [internal documentation](https://docs.google.com/document/d/1GsDdktDw9NikCMuJYInKVzhoKIxuAz_N9NUfMIALpj0/edit?usp=sharing) for more details.
