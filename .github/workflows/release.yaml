@@ -8,7 +8,7 @@ on:
 jobs:
   helm-repo:
     name: Helm Repo
-    uses: slateci/github-actions/.github/workflows/chart-repo-release.yml@v2
+    uses: slateci/github-actions/.github/workflows/chart-repo-release.yml@v9
     secrets:
       gh_token: "${{ secrets.GITHUB_TOKEN }}"
 
