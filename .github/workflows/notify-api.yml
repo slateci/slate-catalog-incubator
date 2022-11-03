@@ -1,6 +1,9 @@
 name: Notify API Server
 
 on:
+  push:
+    branches:
+      - feature/57-update-notify-apiyml-github-workflow
   workflow_run:
     workflows:
       - pages-build-deployment
@@ -10,8 +13,27 @@ on:
       - gh-pages
 
 jobs:
-  notify:
-    name: Notify
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v9
+  notify-dev:
+    name: Notify Dev API Server
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
+    with:
+      slate_api_endpoint: "https://api.dev.slateci.io"
     secrets:
-      slate_api_token: "${{ secrets.SLATE_API_TOKEN }}"
+      slate_api_token: "${{ secrets.SLATE_API_TOKEN_DEV }}"
+
+  notify-staging:
+    name: Notify Staging API Server
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
+    with:
+      slate_api_endpoint: "https://api.staging.slateci.io"
+    secrets:
+      slate_api_token: "${{ secrets.SLATE_API_TOKEN_STAGING }}"
+
+  notify-prod:
+    name: Notify Prod API Server
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
+    with:
+      slate_api_endpoint: "https://api.slateci.io"
+    secrets:
+      slate_api_token: "${{ secrets.SLATE_API_TOKEN_PROD }}"
+
