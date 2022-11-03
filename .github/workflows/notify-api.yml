@@ -13,27 +13,26 @@ on:
       - gh-pages
 
 jobs:
-  notify-dev:
-    name: Notify Dev API Server
+  dev:
+    name: Development
     uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
     with:
       slate_api_endpoint: "https://api.dev.slateci.io"
     secrets:
       slate_api_token: "${{ secrets.SLATE_API_TOKEN_DEV }}"
 
-  notify-staging:
-    name: Notify Staging API Server
+  staging:
+    name: Staging
     uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
     with:
       slate_api_endpoint: "https://api.staging.slateci.io"
     secrets:
       slate_api_token: "${{ secrets.SLATE_API_TOKEN_STAGING }}"
 
-  notify-prod:
-    name: Notify Prod API Server
+  prod:
+    name: Production
     uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@master
     with:
       slate_api_endpoint: "https://api.slateci.io"
     secrets:
       slate_api_token: "${{ secrets.SLATE_API_TOKEN_PROD }}"
-
