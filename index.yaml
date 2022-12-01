@@ -3,6 +3,19 @@ entries:
   adam-test:
   - apiVersion: v2
     appVersion: 2.0.1
+    created: "2022-12-01T20:44:34.703627523Z"
+    description: A Helm chart for Kubernetes
+    digest: 3b9c0a62676bc16f1e8978f3bc3e7d9b9ec897f79307ed28a379b8639e28f6d5
+    maintainers:
+    - email: adam.h.griffith@utah.edu
+      name: adamhgriffith-uofu
+    name: adam-test
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/adam-test-0.1.4/adam-test-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 2.0.1
     created: "2022-12-01T20:34:36.745171534Z"
     description: A Helm chart for Kubernetes
     digest: 6b6f43562a37d57c36daf0848854ad68ecf2c6d18d942b56a7f015137765e4f3
@@ -311,4 +324,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2022-12-01T20:34:36.745468937Z"
+generated: "2022-12-01T20:44:34.703677427Z"
