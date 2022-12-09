@@ -314,6 +314,17 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/open-ondemand-1.0.3/open-ondemand-1.0.3.tgz
     version: 1.0.3
+  perfsonar-checker:
+  - apiVersion: v1
+    appVersion: 4.3.4
+    created: "2022-12-09T16:39:21.712008134Z"
+    description: PerfSONAR checker app for running predefined network performance
+      tests
+    digest: ffe05ed345002d4e3c5a60091fda4d4ede3380bc722794f449916b8ef8ab255f
+    name: perfsonar-checker
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/perfsonar-checker-1.1.2/perfsonar-checker-1.1.2.tgz
+    version: 1.1.2
   telegraf:
   - apiVersion: v2
     appVersion: 1.17.0
@@ -324,4 +335,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2022-12-01T20:44:34.703677427Z"
+generated: "2022-12-09T16:39:21.712150238Z"
