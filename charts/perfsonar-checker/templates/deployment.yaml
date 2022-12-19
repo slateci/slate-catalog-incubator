@@ -55,7 +55,7 @@ spec:
 #        image: perfsonar/testpoint:latest
 #        image: perfsonar-checker:latest
 #        image: slateci/perfsonar-checker:v4.3.4
-        image: hub.opensciencegrid.org/slate/perfsonar-checker:4.3.4
+        image: hub.opensciencegrid.org/slate/perfsonar-checker:4.4.6
         imagePullPolicy: Always
         securityContext: 
           privileged: true
