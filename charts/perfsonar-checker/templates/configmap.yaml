@@ -21,14 +21,14 @@ data:
 #    echo "Sleeping for 3 mins.."
 #    sleep 360
 
-  run-my-tests.sh: |+
-    #!/bin/bash
-    echo "Starting Tests..."
-    #/usr/bin/pscheduler task throughput -t 10 --dest sl-um-ps01.slateci.io
-    /usr/bin/pscheduler troubleshoot
-    echo "Done with all tests.." 
-    echo "Sleeping for 3 mins.."
-    sleep 360
+#  run-my-tests.sh: |+
+#    #!/bin/bash
+#    echo "Starting Tests..."
+#    #/usr/bin/pscheduler task throughput -t 10 --dest sl-um-ps01.slateci.io
+#    /usr/bin/pscheduler troubleshoot
+#    echo "Done with all tests.." 
+#    echo "Sleeping for 3 mins.."
+#    sleep 360
   supervisord.conf: |+
     [supervisord]
     nodaemon=true
