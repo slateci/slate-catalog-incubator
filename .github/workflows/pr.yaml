@@ -8,4 +8,4 @@ on:
 jobs:
   test:
     name: Test Helm Charts
-    uses: slateci/github-actions/.github/workflows/chart-repo-test.yml@v9
+    uses: slateci/github-actions/.github/workflows/chart-repo-test.yml@v13
