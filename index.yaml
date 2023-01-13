@@ -281,6 +281,16 @@ entries:
   perfsonar-checker-systemd:
   - apiVersion: v1
     appVersion: 4.4.6
+    created: "2023-01-13T20:03:11.877379788Z"
+    description: PerfSONAR checker app for running predefined network performance
+      tests
+    digest: dec8e6f4a8043bf623fd9d3cd792f5e29436d96ca1623d7ef14617828e4fe989
+    name: perfsonar-checker-systemd
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/perfsonar-checker-systemd-1.1.5/perfsonar-checker-systemd-1.1.5.tgz
+    version: 1.1.5
+  - apiVersion: v1
+    appVersion: 4.4.6
     created: "2023-01-13T19:18:42.481759714Z"
     description: PerfSONAR checker app for running predefined network performance
       tests
@@ -299,4 +309,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-01-13T19:18:42.481874812Z"
+generated: "2023-01-13T20:03:11.877411588Z"
