@@ -86,7 +86,7 @@ spec:
             mode: 0755
       - name: perfsonar-checker-systemd-{{ .Values.Instance }}-ps-daemon
         configMap:
-          name: perfsonar-checker-systemd-{{ .Values.Instance }}-ps-daemon
+          name: perfsonar-checker-systemd-{{ .Values.Instance }}-startup
           items:
           - key: ps-checker-daemon.service
             path: ps-checker-daemon.service
