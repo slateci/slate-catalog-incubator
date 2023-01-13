@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: {{ template "perfsonar-checker-systemd.fullname" . }}
   labels:
-    app: {{ template "perfsonar-checker-systemd-systemd.name" . }}
+    app: {{ template "perfsonar-checker-systemd.name" . }}
     chart: {{ template "perfsonar-checker-systemd.chart" . }}
     release: {{ .Release.Name }}
     instance: {{ .Values.Instance | quote }}
