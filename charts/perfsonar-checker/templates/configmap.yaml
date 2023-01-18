@@ -8,27 +8,12 @@ metadata:
     release: {{ .Release.Name }}
     instance: {{ .Values.Instance | quote }}
 data:
-  startup_script.sh: |+
-    #!/bin/bash
-    whoami
-    stat /usr/bin/pscheduler
-    echo "*/2 * * * * /usr/bin/run-my-tests.sh > /tmp/cron.out" > /var/spool/cron/root
-    sleep 600
-#    /usr/local/sbin/supervisord_startup.sh
-#    echo "Starting Tests..."
-    #/usr/bin/pscheduler task throughput -t 10 --dest sl-um-ps01.slateci.io
-    #echo "Done with all tests.." 
-#    echo "Sleeping for 3 mins.."
-#    sleep 360
-
-#  run-my-tests.sh: |+
+#  startup_script.sh: |+
 #    #!/bin/bash
-#    echo "Starting Tests..."
-#    #/usr/bin/pscheduler task throughput -t 10 --dest sl-um-ps01.slateci.io
-#    /usr/bin/pscheduler troubleshoot
-#    echo "Done with all tests.." 
-#    echo "Sleeping for 3 mins.."
-#    sleep 360
+#    whoami
+#    stat /usr/bin/pscheduler
+#    echo "*/2 * * * * /usr/bin/run-my-tests.sh > /tmp/cron.out" > /var/spool/cron/root
+#    sleep 600
   supervisord.conf: |+
     [supervisord]
     nodaemon=true
@@ -59,22 +44,22 @@ data:
     
     [program:pscheduler-ticker]
     chown=pscheduler:pscheduler
-    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/ticker --daemon --pid-file /var/run/pscheduler-ticker.pid --dsn @/etc/pscheduler/database/database-dsn 
+    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/ticker --pid-file /var/run/pscheduler-ticker.pid --dsn @/etc/pscheduler/database/database-dsn 
     priority=1
     
     [program:pscheduler-archiver]
     chown=pscheduler:pscheduler
-    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/archiver --daemon --pid-file /var/run/pscheduler-archiver.pid --dsn @/etc/pscheduler/database/database-dsn 
+    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/archiver --pid-file /var/run/pscheduler-archiver.pid --dsn @/etc/pscheduler/database/database-dsn 
     priority=1
     
     [program:pscheduler-scheduler]
     chown=pscheduler:pscheduler
-    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/scheduler --daemon --pid-file /var/run/pscheduler-scheduler.pid --dsn @/etc/pscheduler/database/database-dsn 
+    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/scheduler --pid-file /var/run/pscheduler-scheduler.pid --dsn @/etc/pscheduler/database/database-dsn 
     priority=1
     
     [program:pscheduler-runner]
     chown=pscheduler:pscheduler
-    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/runner --daemon --pid-file /var/run/pscheduler-runner.pid --dsn @/etc/pscheduler/database/database-dsn 
+    command=/usr/bin/python3 /usr/libexec/pscheduler/daemons/runner --pid-file /var/run/pscheduler-runner.pid --dsn @/etc/pscheduler/database/database-dsn 
     priority=1
     
     ;[program:psconfig_pscheduler_agent]
