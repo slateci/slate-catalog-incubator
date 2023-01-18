@@ -52,22 +52,14 @@ spec:
           subPath: start-nginx.sh
       {{ end }}
       - name: perfsonar-testpoint
-#        image: perfsonar/testpoint:latest
-#        image: perfsonar-checker:latest
-#        image: slateci/perfsonar-checker:v4.3.4
-        image: hub.opensciencegrid.org/slate/perfsonar-checker:4.3.4
+        image: hub.opensciencegrid.org/slate/perfsonar-checker:4.4.6
         imagePullPolicy: Always
         securityContext: 
           privileged: true
-#        command: ["/usr/bin/startup_script.sh"] 
-#        command: "pscheduler troubleshoot"
         volumeMounts:
-        - name: perfsonar-checker-{{ .Values.Instance }}-startup
-          mountPath: "/usr/bin/startup_script.sh"
-          subPath: startup_script.sh
-#        - name: perfsonar-test-{{ .Values.Instance }}-startup
-#          mountPath: "/usr/bin/run-my-tests.sh"
-#          subPath: run-my-tests.sh
+#        - name: perfsonar-checker-{{ .Values.Instance }}-startup
+#          mountPath: "/usr/bin/startup_script.sh"
+#          subPath: startup_script.sh
         - name: perfsonar-checker-{{ .Values.Instance }}-supervisord-conf
           mountPath: "/etc/supervisord.conf"
           subPath: supervisord.conf
@@ -77,20 +69,13 @@ spec:
         {{ end }}
       restartPolicy: Always
       volumes:
-      - name: perfsonar-checker-{{ .Values.Instance }}-startup
-        configMap:
-          name: perfsonar-checker-{{ .Values.Instance }}-startup
-          items:
-          - key: startup_script.sh
-            path: startup_script.sh
-            mode: 0755      
-#      - name: perfsonar-test-{{ .Values.Instance }}-startup
+#      - name: perfsonar-checker-{{ .Values.Instance }}-startup
 #        configMap:
 #          name: perfsonar-checker-{{ .Values.Instance }}-startup
 #          items:
-#          - key: run-my-tests.sh
-#            path: run-my-tests.sh
-#            mode: 0755
+#          - key: startup_script.sh
+#            path: startup_script.sh
+#            mode: 0755      
       - name: perfsonar-checker-{{ .Values.Instance }}-supervisord-conf
         configMap:
           name: perfsonar-checker-{{ .Values.Instance }}-startup

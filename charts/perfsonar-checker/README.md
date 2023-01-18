@@ -10,7 +10,7 @@ For all tests to run correctly, you must have proper NTP configuration on the ta
 
 Next, download the values configuration file as shown below:
 
-`slate app get-conf --dev -o conf perfsonar-checker`
+`slate app get-conf -o conf perfsonar-checker`
 
 Edit that file as needed. For example, if you have a cluster node dedicated for running perfSONAR, you can specify it in the configuration file like:
 
@@ -36,7 +36,7 @@ HTTPLogger:
 ```
 Then simply install the app.
 
-`slate app install --dev perfsonar-checker --cluster <cluster name> --group <group name> --conf conf`
+`slate app install perfsonar-checker --cluster <cluster name> --group <group name> --conf conf`
 
 # Results
 The tests run to three different destination servers so it could take some time, probably around 15-20 minutes, for all tests to finish. Each test will log its results to a log file when they're ready.
