@@ -249,6 +249,16 @@ entries:
     version: 1.0.3
   perfsonar-checker:
   - apiVersion: v1
+    appVersion: 4.4.6
+    created: "2023-01-18T22:10:43.587281745Z"
+    description: PerfSONAR checker app for running predefined network performance
+      tests
+    digest: 53a212de63ad17dcb2d9f983becc694b6578debdea5f47c9ba58e4d70ecbc0a5
+    name: perfsonar-checker
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/perfsonar-checker-1.1.6/perfsonar-checker-1.1.6.tgz
+    version: 1.1.6
+  - apiVersion: v1
     appVersion: 4.3.4
     created: "2023-01-04T18:06:01.909194359Z"
     description: PerfSONAR checker app for running predefined network performance
@@ -309,4 +319,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-01-13T20:03:11.877411588Z"
+generated: "2023-01-18T22:10:43.587414846Z"
