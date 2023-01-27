@@ -1,0 +1,40 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "jupyter.fullname" . }}
+  labels:
+    app: {{ template "jupyter.name" . }}
+    chart: {{ template "jupyter.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ template "jupyter.name" . }}
+    chart: {{ template "jupyter.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
+  ports:
+  - name: jupyter
+    protocol: TCP
+    port: 8888
+    targetPort: 8888
+  {{ if eq .Values.SSH.Enabled true }}
+  - name: ssh
+    port: 22
+    protocol: TCP
+  {{ end }}
+  {{ if and (eq .Values.CondorConfig.Enabled true) (eq .Values.CondorConfig.IsExternalPool true) }}
+  - name: condor
+    port: {{ .Values.CondorConfig.ExternalCondorPort }}
+    nodePort: {{ .Values.CondorConfig.ExternalCondorPort }}
+    protocol: TCP
+  {{ end }}
+  {{ if (eq .Values.ExtraPort.Enabled true) }}
+  {{- range untilStep (int .Values.ExtraPort.LowPort) (int (add .Values.ExtraPort.HighPort 1)) 1 }}
+  - name: extra-port-{{ . }}
+    port: {{ . }}
+    nodePort: {{ . }}
+    protocol: TCP
+  {{- end }}
+  {{ end }}
