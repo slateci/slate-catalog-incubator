@@ -135,6 +135,17 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/check-mk-0.2.3/check-mk-0.2.3.tgz
     version: 0.2.3
+  grnoc-telegraf:
+  - apiVersion: v2
+    appVersion: 2.0.3
+    created: "2023-02-06T18:11:01.284461007Z"
+    description: Deploys an SNMP monitoring service and pushes metrics to a GRNOC
+      TSDS using Telegraf.
+    digest: 3690240434766f7f69353c6b83769dafb8b04e715cf2cafe2dccfdd3e6209a0d
+    name: grnoc-telegraf
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/grnoc-telegraf-0.9.0/grnoc-telegraf-0.9.0.tgz
+    version: 0.9.0
   jupyter-notebook:
   - apiVersion: v2
     appVersion: 2.1.3
@@ -330,4 +341,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-01-27T20:34:35.385494005Z"
+generated: "2023-02-06T18:11:01.284502607Z"
