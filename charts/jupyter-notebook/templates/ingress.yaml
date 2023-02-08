@@ -23,5 +23,8 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "jupyter.fullname" . }}
-          servicePort: 8888
+          service:
+            name: {{ template "jupyter.fullname" . }}
+            port: 
+              number: 8888
+        pathType: ImplementationSpecific
