@@ -149,6 +149,16 @@ entries:
   jupyter-notebook:
   - apiVersion: v2
     appVersion: 2.1.3
+    created: "2023-02-08T16:39:40.884590017Z"
+    description: A Jupyter Notebook with a condor-submit setup
+    digest: d176fa52e40ae5ec48d102134396116f7e6c6ca469ef0f91965a6e1ea2ef8824
+    name: jupyter-notebook
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/jupyter-notebook-0.4.17/jupyter-notebook-0.4.17.tgz
+    version: 0.4.17
+  - apiVersion: v2
+    appVersion: 2.1.3
     created: "2023-01-27T20:34:35.385464104Z"
     description: A Jupyter Notebook with a condor-submit setup
     digest: 66b07c16d986f6445f8c927a510f7e353f68bbddc9cc1ea8c2ff3690aa7da5f1
@@ -341,4 +351,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-02-06T18:11:01.284502607Z"
+generated: "2023-02-08T16:39:40.884621118Z"
