@@ -14,7 +14,8 @@ data:
     # get the condor token where it needs to be, with the right ownership
     cp -a /root/tokens/* /etc/condor/tokens.d/
     chown -R condor: /etc/condor/tokens.d
-    chmod 400 /etc/condor/tokens.d/*
+    chmod 440 /etc/condor/tokens.d/*
+    chown :users /etc/condor/tokens.d/condor_token
     condor_token_list
 
     # users won't be able to run `unminimize` anyway
