@@ -135,6 +135,16 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/check-mk-0.2.3/check-mk-0.2.3.tgz
     version: 0.2.3
+  condor-manager:
+  - apiVersion: v1
+    appVersion: "8.9"
+    created: "2023-02-09T15:43:20.78751187Z"
+    description: HTCondor Central Manager Node
+    digest: a248fbb157e420b8268d67930765c734bc4e12e6b46868eddd9bc7bea7e877e9
+    name: condor-manager
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/condor-manager-0.1.4/condor-manager-0.1.4.tgz
+    version: 0.1.4
   grnoc-telegraf:
   - apiVersion: v2
     appVersion: 2.0.3
@@ -351,4 +361,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-02-08T16:39:40.884621118Z"
+generated: "2023-02-09T15:43:20.78754417Z"
