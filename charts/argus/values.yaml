@@ -1,0 +1,41 @@
+# Default values for argus.
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "argus-service"
+
+frontend:
+  version: "1.6.1"
+  pullPolicy: Always
+  url: "http://argus.atlas-ml.org"
+  service:
+    type: ClusterIP
+    port: 8080
+
+api:
+  version: "1.9.0"
+  pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 8000
+  SECRET_KEY: "kasdufy76284rhkjsdb87t7i23ugr"
+  TIME_ZONE: ""
+  ARGUS_DOMAIN: "argus.atlas-ml.org"
+  EMAIL_HOST: "argus.atlas-ml.org"
+  DEFAULT_FROM_EMAIL: "argus@atlas-ml.org"
+
+postgres:
+  user: "puser"
+  pass: "asdf"
+  db: "argus"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+tolerations: []

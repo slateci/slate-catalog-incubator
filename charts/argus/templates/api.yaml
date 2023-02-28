@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+spec:
+  ports:
+  - port: {{ .Values.api.service.port }}
+    protocol: TCP
+  selector:
+    ap: argus
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    {{- include "argus.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "argus.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        ap: argus
+        {{- include "argus.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "argus.serviceAccountName" . }}
+      containers:
+        - name: argus-api
+          image: "ghcr.io/uninett/argus:{{ .Values.api.version }}"
+          imagePullPolicy: {{ .Values.api.pullPolicy }}
+          ports:
+          - name: api-http
+            containerPort: {{ .Values.api.service.port }}
+            protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: SECRET_KEY
+              value: {{ .Values.api.SECRET_KEY }}
+            - name: TIME_ZONE
+              value: {{ .Values.api.TIME_ZONE }}
+            - name: DATABASE_URL
+              value: postgresql://{{ .Values.postgres.user }}:{{ .Values.postgres.pass }}@postgres/{{ .Values.postgres.db }}
+            - name: ARGUS_FRONTEND_URL
+              value: {{ .Values.frontend.url }}
+            - name: ARGUS_REDIS_SERVER
+              value: redis
+            - name: ARGUS_COOKIE_DOMAIN
+              value: {{ .Values.api.ARGUS_DOMAIN }}
+            - name: STATIC_ROOT
+              value: "static/"
+            - name: EMAIL_HOST
+              value: {{ .Values.api.EMAIL_HOST }}
+            - name: DEFAULT_FROM_EMAIL
+              value: {{ .Values.api.DEFAULT_FROM_EMAIL }}
+            - name: ARGUS_DATAPORTEN_KEY
+              value: notset
+            - name: ARGUS_DATAPORTEN_SECRET
+              value: notset

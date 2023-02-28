@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  ports:
+  - port: {{ .Values.frontend.service.port }}
+    protocol: TCP
+  selector:
+    fr: argus
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-{{ include "argus.fullname" . }}
+  labels: 
+    {{- include "argus.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "argus.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        fr: argus
+        {{- include "argus.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "argus.serviceAccountName" . }}
+      containers:
+        - name: frontend-{{ .Chart.Name }}
+          image: ivukotic/argus-frontend:latest
+          imagePullPolicy: {{ .Values.frontend.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.frontend.service.port }}
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
