@@ -5,6 +5,4 @@ http://{{ .host }}
 
 To do:
 ingress controller
-add ACL support
-find what config should be configurable
 
