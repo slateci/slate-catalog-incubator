@@ -1,1 +1,6 @@
-1. Get the application URL by running these commands:
+More details here: https://github.com/Uninett/argus-docker
+
+After installation, one needs to exec into the api pod and run command:
+```django-admin initial_setup```
+
+that will give you an admin password, that should be used to login on API ingress, eg. argus-api.atlas-ml.org/admin.

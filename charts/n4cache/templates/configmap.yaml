@@ -1,0 +1,81 @@
+# this is to be used on any cluster.
+# creates nginx and uses configmap to set the /etc/nginx/nginx.conf
+# change the configmap and recreate pod
+# use the same pod to try out curls
+# curl -x 'localhost:8080' -X GET http://httpbin.org/ip
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "n4cache.fullname" . }}
+data:
+  nginx.conf: |-
+    worker_processes 1;
+    pid /var/run/nginx.pid;
+
+    events {
+      worker_connections 2048;
+      multi_accept on;
+      use epoll;
+    }
+
+    http {
+
+      # Basic Settings
+      sendfile on;
+      tcp_nopush on;
+      tcp_nodelay on;
+      keepalive_timeout 65;
+      types_hash_max_size 2048;
+
+      # Proxy
+      proxy_buffering           on;
+      proxy_cache_path          /tmp/cache levels=1:2 keys_zone=proxy-cache:10m max_size=3g inactive=24h;
+      proxy_temp_path           /tmp/cache/tmp;
+      proxy_buffer_size         4k;
+      proxy_buffers             256 4k;
+
+      # proxy_cache_path  /tmp/cache  levels=1:2    keys_zone=STATIC:10m inactive=24h  max_size=1g;
+      
+      # Logging
+      log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+      log_format cache_status '[$time_local] "$request" $upstream_cache_status';
+
+      access_log /var/log/nginx/access.log  main;
+      error_log  /var/log/nginx/error.log;
+      access_log /var/log/nginx/cache_access.log  cache_status;
+
+      server {
+      
+        listen  [::]:8080;
+        listen 8080;
+        # listen  443;
+        
+        # dns resolver used by forward proxying
+        resolver  1.1.1.1;
+
+        # # forward proxy for CONNECT request
+        # proxy_connect;
+        # proxy_connect_allow            443;
+        # proxy_connect_connect_timeout  10s;
+        # proxy_connect_read_timeout     10s;
+        # proxy_connect_send_timeout     10s;
+
+        # forward proxy for non-CONNECT request
+        location / {
+          expires max;
+          proxy_cache proxy-cache;
+          proxy_cache_valid 200 302 301 1h;
+          proxy_cache_valid any 1m;
+
+          proxy_cache_key         "$scheme://$host$request_uri";
+          proxy_pass              $scheme://$host$request_uri;
+          proxy_set_header        Host $http_host;
+          proxy_set_header        X-Real-IP       $remote_addr;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+
+          proxy_ignore_headers "Set-Cookie";
+        }
+      }
+    }

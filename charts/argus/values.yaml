@@ -8,7 +8,7 @@ serviceAccount:
 frontend:
   version: "1.6.1"
   pullPolicy: Always
-  url: "http://argus.atlas-ml.org"
+  url: "https://argus.atlas-ml.org"
   service:
     type: ClusterIP
     port: 8080

@@ -1,0 +1,10 @@
+NGINX proxy will be serving on 
+{{ with (index .Values.ingress.hosts 0) }}
+http://{{ .host }}
+{{ end }}
+
+To do:
+ingress controller
+add ACL support
+find what config should be configurable
+
