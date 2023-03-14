@@ -55,7 +55,7 @@ data:
         # dns resolver used by forward proxying
         resolver  1.1.1.1;
 
-        {{.Values.acl}}
+        {{.Values.acl | nindent 4 }}
 
         # # forward proxy for CONNECT request
         # proxy_connect;
