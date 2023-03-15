@@ -23,7 +23,6 @@ service:
   port: 80
 
 acl: |-
-  allow localhost;
   allow 72.36.96.0/24;
   allow 149.165.224.0/23; 
   allow 192.170.240.0/23;
@@ -32,7 +31,7 @@ acl: |-
 ingress:
   enabled: true
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: caching-nginx
   hosts:
     - host: n4a.atlas-ml.org
 
