@@ -74,6 +74,16 @@ entries:
   argus:
   - apiVersion: v2
     appVersion: 1.6.1
+    created: "2023-03-15T21:37:47.096739879Z"
+    description: A Helm chart for Argus
+    digest: caf79374385e9e86f0ad989340f1c3f667a7962f46f13923a1dfa40bad19096f
+    name: argus
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/argus-0.1.1/argus-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.6.1
     created: "2023-02-28T18:22:17.783965799Z"
     description: A Helm chart for Argus
     digest: c556cdbf562769d7b3d823a9c81f14c80b015bcae0a0998b65b1b0fe2663a081
@@ -296,6 +306,17 @@ entries:
     urls:
     - https://github.com/slateci/slate-helm-incubator/releases/download/mysql-0.10.3/mysql-0.10.3.tgz
     version: 0.10.3
+  n4cache:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-03-15T21:37:47.25043507Z"
+    description: A Helm chart for Kubernetes
+    digest: 7d2208409773c407650da621d5345bb279868eb2311493e306e0d5b117e208fc
+    name: n4cache
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/n4cache-0.2.2/n4cache-0.2.2.tgz
+    version: 0.2.2
   open-ondemand:
   - apiVersion: v1
     appVersion: 2.0.13
@@ -382,4 +403,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-02-28T18:22:17.783999399Z"
+generated: "2023-03-15T21:37:47.25049987Z"
