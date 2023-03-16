@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: condor-manager
-        image: slateci/condor-manager:latest
+        image: hub.opensciencegrid.org/slate/condor-manager:latest
         imagePullPolicy: IfNotPresent
         ports:
         - name: condor-shared
