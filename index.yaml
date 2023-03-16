@@ -158,6 +158,15 @@ entries:
     version: 0.2.3
   condor-manager:
   - apiVersion: v1
+    appVersion: 10.0.2
+    created: "2023-03-16T22:21:10.687242198Z"
+    description: HTCondor Central Manager Node
+    digest: d595159b66de506303528a348b374b383ff748aacff659d2790f5bb246b69d46
+    name: condor-manager
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/condor-manager-0.2.1/condor-manager-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v1
     appVersion: "8.9"
     created: "2023-03-16T22:06:11.453365164Z"
     description: HTCondor Central Manager Node
@@ -422,4 +431,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-03-16T22:06:11.666491569Z"
+generated: "2023-03-16T22:21:10.687294998Z"
