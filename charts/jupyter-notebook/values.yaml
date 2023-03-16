@@ -65,7 +65,7 @@ CondorConfig:
   IsExternalPool: false
   # This is the name used for the password from which the token for the collector 
   # host was created. It is a good idea to make sure that this does not match the 
-  # name of any password which is present on the collector host
+  # name of any password which is present on the collector host.
   KeyName: jupyter
   # This must be the name used for the issuer of the token for the collector host.
   # It should be different from CollectorHost. 

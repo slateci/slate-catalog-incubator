@@ -32,7 +32,7 @@ spec:
           - key: condor_token
             path: condor_token
             mode: 256
-#Commenting  out the reverse_password for now - it may no longer be required or needed -M
+#Commenting  out the reverse_password for now - it may no longer be required or needed -MA
 #          - key: reverse_password
 #            path: password
 #            mode: 256
