@@ -93,7 +93,7 @@ spec:
       {{ end }}
       containers:
       - name: scipy-notebook
-        image: hub.opensciencegrid.org/slate/jupyter-notebook
+        image: hub.opensciencegrid.org/slate/jupyter-notebook:latest
         imagePullPolicy: "Always"
         workingDir: /home/{{ .Values.Jupyter.NB_USER }}
         env:
