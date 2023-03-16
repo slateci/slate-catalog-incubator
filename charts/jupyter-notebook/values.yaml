@@ -18,7 +18,7 @@ Jupyter:
   NB_USER: 'jovyan'
   #Change this if you want to have a custom unix UID, 
   #for example, to match one you use on a shared filesystem
-  NB_UID: 1000
+  NB_UID: 1001
   #Change this if you want to have a custom default unix GID, 
   #for example, to match one you use on a shared filesystem
   NB_GID: 100
