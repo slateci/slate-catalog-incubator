@@ -26,7 +26,7 @@ spec:
       containers:
       - name: condor-manager
         image: hub.opensciencegrid.org/slate/condor-manager:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: "Always"
         ports:
         - name: condor-shared
           containerPort: 9618
