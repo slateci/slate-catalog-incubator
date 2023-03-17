@@ -159,6 +159,15 @@ entries:
   condor-manager:
   - apiVersion: v1
     appVersion: 10.0.2
+    created: "2023-03-17T16:10:19.47531334Z"
+    description: HTCondor Central Manager Node
+    digest: 020eb01221a2653ab4b24aa01ef4d9f3c37d052f2f77e06e29eaf45196889530
+    name: condor-manager
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/condor-manager-0.2.2/condor-manager-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v1
+    appVersion: 10.0.2
     created: "2023-03-16T22:21:10.687242198Z"
     description: HTCondor Central Manager Node
     digest: d595159b66de506303528a348b374b383ff748aacff659d2790f5bb246b69d46
@@ -196,6 +205,16 @@ entries:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/grnoc-telegraf-0.9.0/grnoc-telegraf-0.9.0.tgz
     version: 0.9.0
   jupyter-notebook:
+  - apiVersion: v2
+    appVersion: 3.6.1
+    created: "2023-03-17T16:10:19.675376267Z"
+    description: A Jupyter Notebook with a condor-submit setup
+    digest: 483ea5b5e5049290de57c5757d1f1cfbae1b28e71276a7fe1e91eb802fcbfd25
+    name: jupyter-notebook
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/jupyter-notebook-0.5.1/jupyter-notebook-0.5.1.tgz
+    version: 0.5.1
   - apiVersion: v2
     appVersion: 2.1.3
     created: "2023-03-16T22:06:11.66645397Z"
@@ -431,4 +450,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-03-16T22:21:10.687294998Z"
+generated: "2023-03-17T16:10:19.675423867Z"
