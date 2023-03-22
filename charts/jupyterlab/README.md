@@ -1,4 +1,4 @@
-# Jupyter Notebook - Scientific Python Stack
+# JupyterLab - Scientific Python Stack
 
 This release of this chart configures a JupyterLab that you can deploy on SLATE platform and also provides two additional optional features: 
 ##### 1- Condor Submit Environment
@@ -11,7 +11,7 @@ To use the first feature, this chart assumes that the user already has access to
 # Configuration
 We will start by downloading the application's configuration file so that you can configure the chart as you need. To get the file, run the following command:  
 
-	$ slate app get-conf --dev jupyter-notebook > jupyter.conf
+	$ slate app get-conf --dev jupyterlab > jupyter.conf
 
 
 Now, let's take a look at the chart's configuration which can be divided into three main categories: Jupyter, Condor and SSH. 
@@ -83,7 +83,7 @@ If you don't need to enable SSH access on your instance, then you can skip this 
 # Deploying
  Now that the configuration file has all the changes you need, you can deploy an instance of this application by using the SLATE command as shown below: 
 
-	$ slate app install jupyter-notebook --dev --group <group> --cluster <cluster> --conf jupyter.conf
+	$ slate app install jupyterlab --dev --group <group> --cluster <cluster> --conf jupyter.conf
 	
 ###### Note: If deployment fails due to an instance name that's already been chosen by another user, please choose a different instance name and try running the above command again 
 Once SLATE creates the requested resources needed for your JupyterLab instance, you can access it via a Web browser. Run the below command to learn the URL of the deployed application: 
@@ -91,7 +91,7 @@ Once SLATE creates the requested resources needed for your JupyterLab instance, 
 	$ slate instance info <instance-ID>
 	Services:
 	Name                               Cluster IP    External IP   Ports          URL                                     
-	slate-dev-jupyter-notebook-alidemo 10.96.150.245 <a-public-ip> 8888:30712/TCP http://slatenotebook.slate-dev.slateci.net/
+	slate-dev-jupyterlab-alidemo 10.96.150.245 <a-public-ip> 8888:30712/TCP http://slatenotebook.slate-dev.slateci.net/
 
 The URL can be found under Services, which in our example is *http://slatenotebook.slate-dev.slateci.net*.
 
@@ -123,7 +123,7 @@ The output will list the SSH IP address and port under Services>URL and it would
 
 	Services:
 	Name                               Cluster IP    External IP   Ports          URL                                     
-	slate-dev-jupyter-notebook-alidemo 10.96.150.245 <a-public-ip> 22:30033/TCP   <ip-address>:<port-number>
+	slate-dev-jupyterlab-alidemo 10.96.150.245 <a-public-ip> 22:30033/TCP   <ip-address>:<port-number>
 
 Multiple ports will often be listed; the one you want for SSH is the one which maps to the internal port 22. 
 

@@ -16,7 +16,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.Ingress.Subdomain }}.{{ .Values.SLATE.Cluster.DNSName }}
-    secretName: jupyter-notebook-{{ .Values.Instance}}-tls
+    secretName: jupyterlab-{{ .Values.Instance}}-tls
   rules:
   - host: {{ .Values.Ingress.Subdomain }}.{{ .Values.SLATE.Cluster.DNSName }}
     http:
