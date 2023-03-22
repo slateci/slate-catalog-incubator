@@ -266,6 +266,17 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/jupyter-notebook-0.4.16/jupyter-notebook-0.4.16.tgz
     version: 0.4.16
+  jupyterlab:
+  - apiVersion: v2
+    appVersion: 3.6.1
+    created: "2023-03-22T21:08:03.162166672Z"
+    description: A JupyterLab with a condor-submit capability
+    digest: 7c96ab6867505273de6a530b426ba94fb22cdd7af7244ae37544e785a43cfd00
+    name: jupyterlab
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/jupyterlab-0.5.2/jupyterlab-0.5.2.tgz
+    version: 0.5.2
   mariadb:
   - apiVersion: v1
     appVersion: 10.3.22
@@ -461,4 +472,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-03-22T19:26:31.455110318Z"
+generated: "2023-03-22T21:08:03.162319675Z"
