@@ -9,7 +9,7 @@ HTCondor is a distributed computing framework for High Throughput Computing (HTC
 This SLATE application requires a token issued by the target HTCondor central manager to be installed as a SLATE secret on the host cluster, along with a password used to issue a token to the central manager itself. Additionally, as an interactive resource, it requires a source for the user accounts to be provisioned, which can be either the [CI-Connect service](https://ci-connect.net) or [SSSD](https://pagure.io/SSSD/sssd) interfacing with an existing LDAP or Active Directory installation. 
 
 ### Deployment
-A pair of condor authentication tokens are required to secure communication between this submit host and the central manager. Normally, one toekn would be generated on each host and passed to the other, but this would be incovenient for deploying this chart. Instead, both tokens can be generated on the central manager, and with one being copied to the submit host, and the other being installed on the central manager itself, and the password used to generate it being copied to the submit host. The token for use by the submit host can be generated fairly normally:
+A pair of condor authentication tokens are required to secure communication between this submit host and the central manager. Normally, one token would be generated on each host and passed to the other, but this would be incovenient for deploying this chart. Instead, both tokens can be generated on the central manager, and with one being copied to the submit host, and the other being installed on the central manager itself, and the password used to generate it being copied to the submit host. The token for use by the submit host can be generated fairly normally:
 
 	$ condor_token_create -identity slate-submit@pool > submit-token
 
@@ -39,7 +39,7 @@ Edit the `CondorConfig` section to set `CollectorHost` to be your central manage
 
 If your central manager is not located on the same Kubernetes cluster, you will also need to set a value for `ExternalCondorPort` in the `CondorConfig` section to a unused NodePort port (usually in the range 30000-32767); unfortunately such a value must usually be arrived at by guesswork. 
 
-In the `SystemConfig` section, make any customizations you need for the resources the application instance will be allowed to use. THis section also contains options for fine-tuning persistent storage either from within Kubernetes or from an external filesystem (such as a site's shared filesystem). 
+In the `SystemConfig` section, make any customizations you need for the resources the application instance will be allowed to use. This section also contains options for fine-tuning persistent storage either from within Kubernetes or from an external filesystem (such as a site's shared filesystem). 
 
 If using CI-Connect to manage your user accounts, set `UserConfig.Mode` to `connectapi`, create a secret with your CI-Connect access token similar to the following:
 
@@ -92,8 +92,11 @@ You should be able to connect to the application interactively with SSH using yo
 | Instance | A label for your application instance | "" |
 | CondorConfig.CollectorHost | The hostname or IP address of your HTCondor central manager | null |
 | CondorConfig.CollectorPort | The port on which your schedd should contact the central manager daemons | 9618 |
+| CondorConfig.ExternalCondorPort | The port on which the condor components in this deployment should listen. If your Central manager is within the same Kubernetes cluster, the default value of 9618 will work. Otherwise, you must guess an unused port within the Kubernetes cluster's NodePort range. THis range is usually, but not always 30000-32767 | 9618 |
+| CondorConfig.reverse_password | The passwrd used to issue a token to the central manager on behalf of this submit host | null |
 | CondorConfig.AuthTokenSecret | The name of the SLATE secret from which contains the token your instance will use to authenticate with the central manager | null |
 | CondorConfig.ConfigFile | Any additional settings you need to inject into the configuration of your schedd | null |
+| SystemConfig.Cvmfs | Boolean to enable Cvmfs | false |
 | SystemConfig.Cpu | The maximum amount of CPU resources the instance will be allowed to use, in units of 'millicores' | 4000m |
 | SystemConfig.Memory | The maximum amount of RAM the instance will be allowed to use | 8Gi |
 | SystemConfig.PVCName | The name of an existing PersistentVolumeClaim which the instance should mount as storage. Mutually exclusive with SystemConfig.HostPath | null |
