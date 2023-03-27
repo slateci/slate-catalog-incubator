@@ -193,6 +193,16 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/condor-manager-0.1.4/condor-manager-0.1.4.tgz
     version: 0.1.4
+  condor-submit:
+  - apiVersion: v1
+    appVersion: 10.0.2
+    created: "2023-03-27T21:38:08.144746804Z"
+    description: CI Connect Hosted Submit Node
+    digest: a2bc2ffd95005ca4b6ea88f1ec576e370d650e131039ca80243afe2b90559683
+    name: condor-submit
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/condor-submit-0.2.0/condor-submit-0.2.0.tgz
+    version: 0.2.0
   funcx-endpoint:
   - apiVersion: v2
     appVersion: 0.3.4
@@ -472,4 +482,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-03-27T21:19:02.983463076Z"
+generated: "2023-03-27T21:38:08.144825006Z"
