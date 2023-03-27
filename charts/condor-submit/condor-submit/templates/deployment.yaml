@@ -1,0 +1,181 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "condor-submit.fullname" . }}
+  labels:
+    app: {{ template "condor-submit.fullname" . }}
+    chart: {{ template "condor-submit.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "condor-submit.fullname" . }}
+      chart: {{ template "condor-submit.chart" . }}
+      release: {{ .Release.Name }}
+      instance: {{ .Values.Instance | quote }}
+  template:
+    metadata:
+      labels: 
+        app: {{ template "condor-submit.fullname" . }}
+        chart: {{ template "condor-submit.chart" . }}
+        release: {{ .Release.Name }}
+        instance: {{ .Values.Instance | quote }}
+    spec:
+      volumes:
+      {{ if eq .Values.UserConfig.Mode "sssd" }}
+      - name: {{ template "condor-submit.name" . }}-auth-configuration
+        configMap:
+          name: {{ template "condor-submit.name" . }}-auth-configuration
+          items:
+          - key: sssd.conf
+            path: sssd.conf
+            mode: 256
+      {{ end }}
+      - name: condor-token-volume
+        secret:
+          secretName: {{ .Values.CondorConfig.AuthTokenSecret }}
+          items: 
+          - key: condor_token
+            path: condor_token
+            mode: 256
+          - key: reverse_password
+            path: password
+            mode: 256
+      - name: {{ template "condor-submit.name" . }}-condor-configuration
+        configMap:
+          name: {{ template "condor-submit.name" . }}-condor-configuration
+          items:
+          - key: condor_config.local
+            path: condor_config.local
+            mode: 292
+      {{ if eq .Values.UserConfig.Mode "connectapi" }}
+      - name: {{ template "condor-submit.name" . }}-provisioner-configuration
+        configMap:
+          name: {{ template "condor-submit.name" . }}-provisioner-configuration
+      {{ end }}
+      {{ if .Values.SystemConfig.HostPath }}
+      - name: dfs-volume
+        hostPath:
+        # directory location on host
+          path: {{ .Values.SystemConfig.HostPath }}
+      {{ end }}
+      {{ if .Values.SystemConfig.PVCName }}
+      - name: pvc-volume
+        persistentVolumeClaim:
+        # use the requested PVC:
+          claimName: {{ .Values.SystemConfig.PVCName }}
+      {{ end }}
+      {{ if .Values.SystemConfig.Cvmfs }}
+      - name: config-osg
+        persistentVolumeClaim:
+          claimName: {{ printf "csi-cvmfs-pvc-config-osg-%s" .Values.Instance | trimSuffix "-" }}
+      - name: oasis
+        persistentVolumeClaim:
+          claimName: {{ printf "csi-cvmfs-pvc-oasis-%s" .Values.Instance | trimSuffix "-" }}
+      - name: singularity
+        persistentVolumeClaim:
+          claimName: {{ printf "csi-cvmfs-pvc-singularity-%s" .Values.Instance | trimSuffix "-" }}
+      - name: spt
+        persistentVolumeClaim:
+          claimName: {{ printf "csi-cvmfs-pvc-spt-%s" .Values.Instance | trimSuffix "-" }}
+      - name: connect
+        persistentVolumeClaim:
+          claimName: {{ printf "csi-cvmfs-pvc-connect-%s" .Values.Instance | trimSuffix "-" }}
+#      - name: atlas
+#        persistentVolumeClaim:
+#          claimName: {{ printf "csi-cvmfs-pvc-atlas-%s" .Values.Instance | trimSuffix "-" }}
+#      - name: atlas-condb
+#        persistentVolumeClaim:
+#          claimName: {{ printf "csi-cvmfs-pvc-atlas-condb-%s" .Values.Instance | trimSuffix "-" }}
+#      - name: atlas-nightlies
+#        persistentVolumeClaim:
+#          claimName: {{ printf "csi-cvmfs-pvc-atlas-nightlies-%s" .Values.Instance | trimSuffix "-" }}
+      {{ end }}
+      containers:
+      - name: condor-submit
+        image: hub.opensciencegrid.org/slate/condor-submit:latest
+        imagePullPolicy: Always
+        ports:
+        - name: ssh
+          containerPort: 22
+          protocol: TCP
+        - name: condor
+          containerPort: {{ .Values.CondorConfig.ExternalCondorPort }}
+          protocol: TCP
+        volumeMounts:
+        {{ if eq .Values.UserConfig.Mode "sssd" }} 
+        - name: {{ template "condor-submit.name" . }}-auth-configuration
+          mountPath: /etc/sssd/sssd.conf
+          subPath: sssd.conf 
+        {{ end }}
+        - name: condor-token-volume
+          mountPath: /root/tokens/condor_token
+          subPath: condor_token
+        - name: {{ template "condor-submit.name" . }}-condor-configuration
+          mountPath: /etc/condor/condor_config.local
+          subPath: condor_config.local
+        - name: condor-token-volume
+          mountPath: /etc/condor/password
+          subPath: password
+        {{ if eq .Values.UserConfig.Mode "connectapi" }}
+        - name: {{ template "condor-submit.name" . }}-provisioner-configuration
+          mountPath: /usr/local/etc/ciconnect/_config
+          subPath: _config
+        {{ end }}
+        {{ if and .Values.SystemConfig.MountLocation .Values.SystemConfig.HostPath }}
+        - name: dfs-volume
+          mountPath: {{ .Values.SystemConfig.MountLocation }}
+        {{ end }}
+        {{ if and .Values.SystemConfig.MountLocation .Values.SystemConfig.PVCName }}
+        - name: pvc-volume
+          mountPath: {{ .Values.SystemConfig.MountLocation }}
+        {{ end }}
+        {{ if .Values.SystemConfig.Cvmfs }}
+        - name: config-osg
+          mountPath: /cvmfs/config-osg.opensciencegrid.org
+        - name: oasis
+          mountPath: /cvmfs/oasis.opensciencegrid.org
+        - name: spt
+          mountPath: /cvmfs/spt.opensciencegrid.org
+        - name: connect
+          mountPath: /cvmfs/connect.opensciencegrid.org
+        - name: singularity
+          mountPath: /cvmfs/singularity.opensciencegrid.org
+#        - name: atlas
+#          mountPath: /cvmfs/atlas.cern.ch
+#        - name: atlas-nightlies
+#          mountPath: /cvmfs/atlas-nightlies.cern.ch
+#        - name: atlas-condb
+#          mountPath: /cvmfs/atlas-condb.cern.ch
+        {{ end }}
+        env:
+        - name: _CONDOR_TCP_FORWARDING_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: _CONDOR_PRIVATE_NETWORK_INTERFACE
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        {{ if eq .Values.UserConfig.Mode "connectapi" }}
+        - name: API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.UserConfig.ConnectToken }}
+              key: API_TOKEN
+        - name: GROUP_GROUP
+          value: {{ .Values.UserConfig.ConnectGroupSourceGroup }}
+        - name: USER_GROUP
+          value: {{ .Values.UserConfig.ConnectUserSourceGroup }}
+        {{ end }}
+        resources:
+          requests:
+            # we'll make it a modest request for now
+            memory: {{ .Values.SystemConfig.Memory }}
+            cpu:    {{ .Values.SystemConfig.Cpu }}
+      {{ if .Values.SystemConfig.NodeSelector }}
+      nodeSelector:
+        {{ .Values.SystemConfig.NodeSelector }}
+      {{ end }}
