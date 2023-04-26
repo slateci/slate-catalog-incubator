@@ -4,7 +4,7 @@
 
 # reana_hostname: reana.cern.ch
 # `reana_hostname` should be set for third party integrations to work and for
-# production deployments to be secure.
+# production deployments to be secure. 
 
 debug:
   enabled: false
