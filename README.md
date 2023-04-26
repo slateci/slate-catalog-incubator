@@ -7,6 +7,11 @@
 
 The incubator catalog is intended to be a catalog environment where new developers of SLATE applications will initially submit their work for review and testing as described on the [SLATE website](https://slateci.io/docs/apps/catalog.html). These applications will be available on the Portal but treated as "under development".
 
+Add the Helm repository locally via:
+```shell
+helm repo add https://slateci.io/slate-catalog-incubator
+```
+
 ## Contributing an Application?
 
 Wanting to develop an application for SLATE? Check out our [Application Development](https://slateci.io/docs/apps) documentation.
