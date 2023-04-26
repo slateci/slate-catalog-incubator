@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reana-startup
+  namespace: {{ .Release.Namespace }}
+data:
+  startup_script.sh: |+
+    #!/bin/bash
+    sleep 10
+    echo "Waiting for 10 secs to allow rest-api to start and be ready"
+    echo "Initializing the DB by running the create-database.sh script"
+    /code/scripts/create-database.sh
+    retVal=$?
+    if [ $retVal -eq 1 ]
+    then
+    echo "The default resources already exist. No action was taken."
+    elif [ $retVal -ne 0 ]i
+    then
+    echo "There was an error when creating the DB"
+    exit
+    fi
+    echo "Creating admin creds..."
+    echo "Your admin token is:"
+    flask reana-admin create-admin-user --email john.doe@example.org --password mysecretpw
+    echo "Now, use the generated token to create a k8s secret, and then access the REANA webpage using the creds you created"
+    echo "The custom SLATE startup script has finished!" >  /proc/1/fd/1
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reana-startup-spvsd
+  namespace: {{ .Release.Namespace }}
+data:
+  supervisord.conf: |+
+    [supervisord]
+    logfile=/var/log/supervisor/supervisord.log
+    pidfile=/var/run/supervisord.pid
+    nodaemon=true
+    
+    [program:rest-api]
+    command=/bin/sh -c "uwsgi --ini /var/reana/uwsgi/uwsgi.ini"
+    stdout_logfile=/dev/stdout
+    stdout_logfile_maxbytes=0
+    stderr_logfile=/dev/stderr
+    stderr_logfile_maxbytes=0
+    priority=1
+
+    [program:init-db]
+    command=/etc/slate-reana/startup_script.sh
+    stdout_logfile=/dev/stdout
+    stdout_logfile_maxbytes=0
+    stderr_logfile=/dev/stderr
+    stderr_logfile_maxbytes=0
+    priority=10
