@@ -35,4 +35,4 @@ sources:
 - https://github.com/reanahub/www.reana.io
 type: application
 version: 0.9.1
-# Does this not have an appVersion?
+appVersion: 0.9.1
