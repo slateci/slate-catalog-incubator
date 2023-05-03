@@ -233,6 +233,17 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/funcx-endpoint-0.3.5/funcx-endpoint-0.3.5.tgz
     version: 0.3.5
+  globus-compute-endpoint:
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2023-05-03T19:15:00.317414902Z"
+    description: Deploy a Globus Compute endpoint into a cluster
+    digest: 9435937b8e064a0e7737da06f7cf638a4e6aedca827e2bb83512bd3e57c7a5ba
+    name: globus-compute-endpoint
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/globus-compute-endpoint-0.1.2/globus-compute-endpoint-0.1.2.tgz
+    version: 0.1.2
   globus_compute_endpoint:
   - apiVersion: v2
     appVersion: 2.0.0
@@ -555,4 +566,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-05-02T16:18:02.097738719Z"
+generated: "2023-05-03T19:15:00.317478602Z"
