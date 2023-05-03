@@ -212,27 +212,6 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/condor-submit-0.2.0/condor-submit-0.2.0.tgz
     version: 0.2.0
-  funcx-endpoint:
-  - apiVersion: v2
-    appVersion: 0.3.4
-    created: "2023-03-31T23:57:54.915991109Z"
-    description: Deploy a funcX endpoint into a cluster
-    digest: c5782222b0d05bfdf49e41286d42fdcd1d555f2ee30372c2b05c1a9f7290b2ca
-    name: funcx-endpoint
-    type: application
-    urls:
-    - https://github.com/slateci/slate-catalog-incubator/releases/download/funcx-endpoint-0.3.6/funcx-endpoint-0.3.6.tgz
-    version: 0.3.6
-  - apiVersion: v2
-    appVersion: 0.3.4
-    created: "2023-03-27T21:19:02.983399172Z"
-    description: Deploy a funcX endpoint into a cluster
-    digest: b60eae3237133feaed62741a8b1f4adb6a8dc6b25b1fccff200a76edb931a133
-    name: funcx-endpoint
-    type: application
-    urls:
-    - https://github.com/slateci/slate-catalog-incubator/releases/download/funcx-endpoint-0.3.5/funcx-endpoint-0.3.5.tgz
-    version: 0.3.5
   globus-compute-endpoint:
   - apiVersion: v2
     appVersion: 2.0.0
