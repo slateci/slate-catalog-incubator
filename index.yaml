@@ -244,17 +244,6 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/globus-compute-endpoint-0.1.2/globus-compute-endpoint-0.1.2.tgz
     version: 0.1.2
-  globus_compute_endpoint:
-  - apiVersion: v2
-    appVersion: 2.0.0
-    created: "2023-05-02T16:18:01.923208782Z"
-    description: Deploy a Globus Compute endpoint into a cluster
-    digest: 5c53697a48cfa259ecbcf886cb83c671129d25b002b4ce7b48069571d0d87fd0
-    name: globus_compute_endpoint
-    type: application
-    urls:
-    - https://github.com/slateci/slate-catalog-incubator/releases/download/globus_compute_endpoint-0.1.1/globus_compute_endpoint-0.1.1.tgz
-    version: 0.1.1
   grnoc-telegraf:
   - apiVersion: v2
     appVersion: 2.0.3
