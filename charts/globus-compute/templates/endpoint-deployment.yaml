@@ -26,12 +26,12 @@ spec:
         fsGroup: 1000
       containers:
       - name: {{ .Release.Name }}-endpoint
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: hub.opensciencegrid.org/slate/globus-compute:0.0.1
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "/home/compute/boot.sh {{ coalesce .Values.endpointName .Release.Name }} {{ .Values.endpointUUID }} {{ .Values.endpointCLIargs }}" ]
         tty: true
         stdin: true
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        imagePullPolicy: Always
         {{- if .Values.resources }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
