@@ -2,12 +2,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+Instance: default
+
 replicaCount: 1
 funcXServiceAddress: https://api2.funcx.org
-image:
-  repository: compute/kube-endpoint
-  tag: main-3.10
-  pullPolicy: Always
 
 workerDebug: false
 workerImage: python:3.10
@@ -24,10 +22,10 @@ initCPU: 1
 maxCPU: 2
 
 initBlocks: 0
-minBlocks: 1
+minBlocks: 0
 maxBlocks: 100
 maxWorkersPerPod: 1
-maxIdleTime: 3600
+maxIdleTime: 600
 
 # endpoint is required
 endpointUUID:
@@ -36,5 +34,6 @@ endpointUUID:
 endpointCLIargs: --log-to-console
 
 # Will fail until user specifies one of these in their values.yaml
-useClientCredentials: false
+secrets: 
+useClientCredentials: true
 useUserCredentials: false
