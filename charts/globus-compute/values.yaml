@@ -1,25 +1,20 @@
-# used in SLATE to create a unqiue instance name
-instance: default
-
-# Default values for funcx_endpoint.
+# Default values for globus_compute_endpoint.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+Instance: default
+
 replicaCount: 1
 funcXServiceAddress: https://api2.funcx.org
-image:
-  repository: funcx/kube-endpoint
-  tag: main-3.10
-  pullPolicy: Always
 
 workerDebug: false
 workerImage: python:3.10
-workerInit: pip install funcx-endpoint>=1.0.10
+workerInit: pip install globus-compute-endpoint>=2.0.0
 workerNamespace: default
 logDir: /tmp/worker_logs
 
 rbacEnabled: true
-nameOverride: funcx-endpoint
+nameOverride: globus-compute-endpoint
 
 initMem: 500Mi
 maxMem: 1600Mi
@@ -27,10 +22,10 @@ initCPU: 1
 maxCPU: 2
 
 initBlocks: 0
-minBlocks: 1
+minBlocks: 0
 maxBlocks: 100
 maxWorkersPerPod: 1
-maxIdleTime: 3600
+maxIdleTime: 600
 
 # endpoint is required
 endpointUUID:
@@ -40,5 +35,5 @@ endpointCLIargs: --log-to-console
 
 # Will fail until user specifies one of these in their values.yaml
 secrets: 
-useClientCredentials: false
+useClientCredentials: true
 useUserCredentials: false

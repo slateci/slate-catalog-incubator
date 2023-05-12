@@ -5,7 +5,7 @@ This chart installs a central manager suitable for operating an HTCondor pool. S
 ---
 # Installation
 
-This guid illustrates deploying a full condor pool with the central manager, an interactive submit node, and a worker node through SLATE. If suitable submit or worker nodes exist (or will be created) outside of SLATE/Kubernetes, the steps for deploying those components should be modified appropriately. 
+This guide illustrates deploying a full condor pool with the central manager, an interactive submit node, and a worker node through SLATE. If suitable submit or worker nodes exist (or will be created) outside of SLATE/Kubernetes, the steps for deploying those components should be modified appropriately. 
 
 First, the central manager should be installed, as it will issue tokens which are needed by the other components. The manager has no particular dependencies, and so may be installed directly:
 

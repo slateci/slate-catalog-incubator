@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hook-postdelete
+  annotations:
+    "helm.sh/hook": "post-delete"
+    "helm.sh/hook-delete-policy": hook-succeeded 
+spec:
+  containers:
+  - name: cleanup-hook-container
+    image: busybox
+    imagePullPolicy: IfNotPresent
+    command: ['sh', '-c', 'echo running post-delete hook after waiting for 30 secs && sleep 30 && /bin/rm -rf /var/reana/*']
+    volumeMounts:      
+      - mountPath: /var/reana
+        name: reana-share
+
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 0 
+  volumes:
+    - name: reana-share  
+      hostPath:
+        path: /var/reana 
