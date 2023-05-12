@@ -1,0 +1,60 @@
+Instance: ""
+
+# The following must be created *before* instantiating a GCSv5 container. 
+# Before creating this container, you *must* do the following:
+# * Login on globus.org and in settings>developers, select the project
+#   that the endpoint will be registered in
+# * Add an app and under the type, select 'Register a Globus Connect Server'
+# * Create a new registration with the appropriate fields 
+# * Make sure to record the client uuid since this will be needed
+# * Create a new client secret and record the secret (this is the only 
+#   time it will be displayed)
+# * On a system with the globus connect 5.4 rpms installed, run
+#   globus-connect-server endpoint setup [endpoint_name] --contact-email [email] -o [globus_id] --organization [org] -c [client_uuid from above]
+# * The setup will request the secret that you generated and then create a deployment-key.json file that you *must* keep 
+#
+# Create a new file with the contents:
+#   GLOBUS_CLIENT_ID=<client_uuid>
+#   GLOBUS_CLIENT_SECRET=<secret>
+#   DEPLOYMENT_KEY=<contents of deployment-key.json>
+# And then create the credential with:
+#   slate secret create <secret-name> --group <group> --cluster <cluster> \
+#    --from-env-file <filename>
+GlobusCredentialSecret: globus-creds # maps to <secret-name> as in the above
+
+# The following file must contain usernames and encrypted passwords for any 
+# users who may log in to the system. This user will be used to generate a
+# MyProxy certificate for the end user who will transfer files.
+# 
+# The file must follow passwd(5) format. 
+#
+#                       **IMPORTANT** 
+# OTHERWISE, if you are using CILogon authentication (default) you will need to
+# provide an extended passwd(5)-format file with the users' X509 distinguished
+# name (DN) in the final field, e.g.:
+#   
+#   slateci:x:1001:1001:SLATE CI:/home/slateci:/DC=org/DC=cilogon/C=US/O=UNIX University/CN=Charlie Root A1234
+#
+# Once this file has been created, store it as a SLATE secret with:
+#
+#   slate secret create <secret-name> --group <group> --cluster <cluster> \
+#     --from-file <filename>
+GlobusPasswdSecret: globus-passwd # maps to <secret-name> as in the above
+
+# The path at which the storage should be mounted. 
+ExternalPath: /export
+# The path for a backing filesystem to be mounted from the host system. 
+InternalPath: /mnt
+# The name of a PersistentVolumeClaim which should be mounted as backing storage.
+PVCName: 
+# If set, use a nodeSelector to run only on a matching nodes. 
+# This is useful when only certain nodes on the cluster mount the appropriate 
+# backing filesystem. It may be desirable to turn this off when using a PVC as
+# backing storage, since this tends not to tie to a specific node. 
+# e.g., "NodeSelector: globus" will match nodes with "globus=true"
+# NodeSelector: globus
+### SLATE-START ###
+SLATE:
+  Instance:
+    ID: "untagged"
+### SLATE-END ###
