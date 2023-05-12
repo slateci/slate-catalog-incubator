@@ -33,7 +33,7 @@ NodeSetupArgs: ""
 # The file must follow passwd(5) format. 
 #
 #                       **IMPORTANT** 
-# OTHERWISE, if you are using CILogon authentication (default) you will need to
+# You will need to
 # provide an extended passwd(5)-format file with the users' X509 distinguished
 # name (DN) in the final field, e.g.:
 #   
