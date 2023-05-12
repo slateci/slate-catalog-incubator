@@ -1,7 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hook-postdelete
+#  name: hook-postdelete
+  name: {{ template "reana.fullname" . }}-post-delete-hook
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
+
   annotations:
     "helm.sh/hook": "post-delete"
     "helm.sh/hook-delete-policy": hook-succeeded 

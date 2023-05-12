@@ -2,8 +2,14 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ include "reana.prefix" . }}-deployment-manager
-  namespace: {{ .Release.Namespace }}
+#  name: {{ include "reana.prefix" . }}-deployment-manager
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
 rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["nodes", "nodes/status", "pods", "pods/log", "secrets", "persistentvolumeclaims", "configmaps"]

@@ -2,8 +2,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: uwsgi-config
-  namespace: {{ .Release.Namespace }}
+#  name: uwsgi-config
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}-uwsgi-config
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
 data:
   uwsgi.ini: |
     [uwsgi]

@@ -2,8 +2,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: reana-config
-  namespace: {{ .Release.Namespace }}
+#  name: reana-config
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
 data:
   ui-config.yaml: |
     announcement: {{ .Values.components.reana_ui.announcement | quote | default "null"  }}

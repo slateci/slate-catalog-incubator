@@ -4,8 +4,14 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "reana.prefix" . }}-infrastructure-persistent-volume
-  namespace: {{ .Release.Namespace }}
+#  name: {{ include "reana.prefix" . }}-infrastructure-persistent-volume
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
 spec:
   accessModes:
   - {{ .Values.infrastructure_storage.access_modes }}

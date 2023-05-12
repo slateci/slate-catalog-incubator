@@ -3,8 +3,14 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ include "reana.prefix" . }}-system-status
-  namespace: {{ .Release.Namespace }}
+#  name: {{ include "reana.prefix" . }}-system-status
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}
+  labels:
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
 spec:
   schedule: "{{ .Values.notifications.system_status }}"
   concurrencyPolicy: Forbid

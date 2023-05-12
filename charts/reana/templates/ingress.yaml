@@ -1,8 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "reana.prefix" . }}-ingress
-  namespace: {{ .Release.Namespace }}
+#  name: {{ include "reana.prefix" . }}-ingress
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

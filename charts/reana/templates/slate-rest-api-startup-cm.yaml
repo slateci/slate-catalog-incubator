@@ -1,8 +1,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: reana-startup
-  namespace: {{ .Release.Namespace }}
+#  name: reana-startup
+#  namespace: {{ .Release.Namespace }}
+  name: {{ template "reana.fullname" . }}-startup
+  labels: 
+    app: {{ template "reana.name" . }}
+    chart: {{ template "reana.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
 data:
   startup_script.sh: |+
     #!/bin/bash
