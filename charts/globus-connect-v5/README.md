@@ -1,23 +1,55 @@
 # Globus Connect Server v5
 
-
 *Image source*: https://github.com/slateci/container-gcs5
 
-The initial release of this chart will only configure Globus Connect to
-transfer files to an ephemeral container volume. A future release will allow
-mounting other filesystems present on the host system into the container.
-
---- # Installation
-
-### Dependency Notes To deploy this chart, you will need to first create the
-administrator credentials and user passwd file with the SLATE secret command. 
+## Installation
 
 This SLATE application requires the creation of two secrets in order to be
 used. Before deploying this chart, you will need to create a passwd(5)-like
-user list with encrypted passwords, and you will additionally need to have your
-Globus credentials stored in SLATE for endpoint deployment. 
+user list with encrypted passwords, and you will additionally need to generate 
+credentials for the endpoint on the globus.org website and using the 
+`globus-coonect-server` cli command.
 
-### Storing the admin credentials
+### Creating the endpoint credentials
+
+The following must be created *before* instantiating a GCSv5 container so
+that the endpoint will be configured correctly.
+
+* Login on globus.org and in Settings>Developers, select the project that the endpoint will be registered in
+* Add an app and under the type, select 'Register a Globus Connect Server'
+* Create a new registration with the appropriate fields 
+* Make sure to record the client uuid since this will be needed
+* Create a new client secret and record the secret (this is the only time it will be displayed)
+* On a system with the globus connect 5.4 rpms installed, run 
+
+  ```shell
+  $ globus-connect-server endpoint setup [endpoint_name] \
+        --contact-email [email] -o [globus_id] --organization [org] \
+        -c [client_uuid]
+  ``` 
+
+  replacing `[endpoint_name]` with your endpoint's name, `[email]` with your contact email, 
+  `[globus_id]` with your globus id (e.g. `sthapa@globusid.org`), `[org]` with your organization, and
+  `[client_uuid]` with the client uuid you got from the globus.org website.
+* The setup will request the secret that you generated and then create a deployment-key.json file that you *must* keep 
+
+Create a new file with the contents:
+
+```
+GLOBUS_CLIENT_ID=<client_uuid>
+GLOBUS_CLIENT_SECRET=<secret>
+DEPLOYMENT_KEY=<contents of deployment-key.json>
+
+```
+
+And then create the credential with:
+
+
+```shell
+$ slate secret create <secret-name> --group <group> --cluster <cluster> \
+    --from-env-file <filename>
+```
+
 To add the admin credentials, Create a new file with the contents:
 
 ```
@@ -119,34 +151,6 @@ mounted, or `PVCName` name can be set to mount a PVC by name. If either option
 is used to mount a volume, `ExternalPath` can be used to set the path within
 the container at which it will be mounted. 
  
-## Activating the endpoint
-Once the application has deployed, you will need to visit globus.org to
-activate the endpoint.
-
-Click log in, and log in with the same credentials used to deploy the GCSv5
-container.
-
-Once logged in, click Endpoints, then click "Administered By You". 
-
-Find the endpoint you just created, and then click the arrow ( ">" ) on the
-right. Go to the tab labeled Server, and click "Edit Identity Provider".
-
-At your console, you will need to tail the logs with:
-
-```
-slate instance logs <instance id>
-```
-
-Copy the Distinguished Name from the log output that says "Server DN:
-/C=US/O=Globus Consortium/OU=Globus Connect Service/CN=..." and paste it into
-the field that says "DN". Click Save Changes.
-
-On the Overview page, click "Activate Endpoint". You will need to enter your
-admin credentials and then the endpoint should be activated.
-
-Once this has been completed, you can transfer files between the SLATE-deployed
-Globus endpoint and any other Globus endpoint where you have access.
-
-##Usage
+## Usage
 For further instrucions on how to use globus please read this
 [documentation](https://docs.globus.org/)
