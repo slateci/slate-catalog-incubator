@@ -23,18 +23,6 @@ spec:
         instanceID: {{ .Values.SLATE.Instance.ID | quote  }}
     spec:
       volumes:
-      - name: {{ template "globus-connect.fullname" . }}-config
-        configMap:
-          name: globus-{{ .Values.Instance }}-configuration
-          items:
-          - key: globus-connect-server.conf
-            path: globus-connect-server.conf
-      - name: {{ template "globus-connect.fullname" . }}-passwd
-        secret:
-          secretName: {{ .Values.GlobusPasswdSecret }}
-          items: 
-          - key: passwd
-            path: passwd
       {{ if .Values.InternalPath }}
       - name: dfs-volume
         hostPath:
@@ -69,23 +57,13 @@ spec:
             secretKeyRef:
               name: {{ .Values.GlobusCredentialSecret }}
               key: DEPLOYMENT_KEY
-        { if .Values.NodeSetupArgs }
+        {{ if .Values.NodeSetupArgs }}
         - name: NODE_SETUP_ARGS
           value: {{ .Values.NodeSetupArgs }}
-        {{ end }}
-        {{ if .Values.GlobusConfig.GridFTP.Server }}
-        - name: GLOBUS_SERVER
-          value: {{ .Values.GlobusConfig.GridFTP.Server }}
         {{ end }}
         - name: TERM
           value: 'xterm'
         volumeMounts:
-        - name: {{ template "globus-connect.fullname" . }}-config
-          mountPath: "/etc/globus-connect-server.conf"
-          subPath: globus-connect-server.conf
-        - name: {{ template "globus-connect.fullname" . }}-passwd
-          mountPath: "/root/passwd"
-          subPath: passwd
         {{ if and .Values.ExternalPath .Values.InternalPath }}
         - name: dfs-volume
           mountPath: {{ .Values.ExternalPath }}
