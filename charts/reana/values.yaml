@@ -6,6 +6,10 @@
 # `reana_hostname` should be set for third party integrations to work and for
 # production deployments to be secure. 
 
+# The label to apply to this deployment,
+# used to manage multiple instances of the same application
+Instance: default
+
 debug:
   enabled: false
 eos:
@@ -165,3 +169,11 @@ quota:
   # backward compatibility
   disk_update: "0 3 * * *"  # everyday at 3am
   termination_update_policy: ""
+
+### SLATE-START ###
+SLATE:
+  Cluster:
+    DNSName: "some-cluster.slateci.net"
+  Instance:
+    ID: "untagged"
+### SLATE-END ###
