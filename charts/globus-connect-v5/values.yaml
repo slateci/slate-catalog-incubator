@@ -22,6 +22,10 @@ Instance: ""
 #    --from-env-file <filename>
 GlobusCredentialSecret: globus-creds # maps to <secret-name> as in the above
 
+# The following provides extra parameters to pass to the server
+# in particular, things like --ip-address if you need to specify the ip address
+NodeSetupArgs: ""
+
 # The following file must contain usernames and encrypted passwords for any 
 # users who may log in to the system. This user will be used to generate a
 # MyProxy certificate for the end user who will transfer files.

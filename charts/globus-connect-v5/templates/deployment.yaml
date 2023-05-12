@@ -69,6 +69,10 @@ spec:
             secretKeyRef:
               name: {{ .Values.GlobusCredentialSecret }}
               key: DEPLOYMENT_KEY
+        { if .Values.NodeSetupArgs }
+        - name: NODE_SETUP_ARGS
+          value: {{ .Values.NodeSetupArgs }}
+        {{ end }}
         {{ if .Values.GlobusConfig.GridFTP.Server }}
         - name: GLOBUS_SERVER
           value: {{ .Values.GlobusConfig.GridFTP.Server }}
