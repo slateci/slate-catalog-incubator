@@ -8,7 +8,7 @@ This SLATE application requires the creation of two secrets in order to be
 used. Before deploying this chart, you will need to create a passwd(5)-like
 user list with encrypted passwords, and you will additionally need to generate 
 credentials for the endpoint on the globus.org website and using the 
-`globus-coonect-server` cli command.
+`globus-connect-server` cli command.
 
 ### Creating the endpoint credentials
 
@@ -20,7 +20,7 @@ that the endpoint will be configured correctly.
 * Create a new registration with the appropriate fields 
 * Make sure to record the client uuid since this will be needed
 * Create a new client secret and record the secret (this is the only time it will be displayed)
-* On a system with the globus connect 5.4 rpms installed, run 
+* On a system with [globus connect 5.4 installed](https://docs.globus.org/globus-connect-server/v5/quickstart/#gcsv5-install), run 
 
   ```shell
   $ globus-connect-server endpoint setup [endpoint_name] \
