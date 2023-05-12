@@ -50,28 +50,20 @@ $ slate secret create <secret-name> --group <group> --cluster <cluster> \
     --from-env-file <filename>
 ```
 
-To add the admin credentials, Create a new file with the contents:
 
-```
-GLOBUS_USER=<username>
-GLOBUS_PASSWORD=<password>
-```
-
-And then create the credential with:
-
-```
-slate secret create <secret-name> --group <group> --cluster <cluster> --from-env-file <filename>
-```
-
-### Generating the passwd(5) file (MyProxy authentication)
+### Generating the passwd(5) file 
 This chart will consume a file in the format of /etc/passwd, with the notable
 exception that the second field must contain an encrypted password hash. This
 hash will be stored as a SLATE secret (re-encrypted in DynamoDB) and the
 encrypted hash be visible to any user of your namespace and the administrator
 of the SLATE cluster upon which you are deploying GCSv5. 
 
-This chart requires UNIX passwords in order to allow MyProxy to authenticate
-users who wish to transfer files against the SLATE-deployed endpoint.
+You will need to provide an extended passwd(5)-format file with the 
+users' X509 distinguished name (DN) in the final field, e.g.:
+
+```
+   slateci:x:1001:1001:SLATE CI:/home/slateci:/DC=org/DC=cilogon/C=US/O=UNIX University/CN=Charlie Root A1234
+```
 
 The encrypted password hash can be generated via:
 
