@@ -8,19 +8,31 @@ This SLATE application requires the creation of two secrets in order to be
 used. Before deploying this chart, you will need to create a passwd(5)-like
 user list with encrypted passwords, and you will additionally need to generate 
 credentials for the endpoint on the globus.org website and using the 
-`globus-coonect-server` cli command.
+`globus-connect-server` cli command.
 
 ### Creating the endpoint credentials
 
 The following must be created *before* instantiating a GCSv5 container so
 that the endpoint will be configured correctly.
 
-* Login on globus.org and in Settings>Developers, select the project that the endpoint will be registered in
+* Login on globus.org and go to the Settings>Developers page
+* If you have an already created project for the globus connect server, select it
+* Otherwise create a new project by doing the following:
+   * Click on the Advanced Registration option
+   * Select the none of the above - create a new project option and press Continue
+   * Fill in the information on the new project and press Continue
+   * Select a globus id and sign in if requested to
+   * Once you get to the App Registration page, click Cancel
+   * You'll be be back at the Developers page and should see the new project on the column on the right, select it
 * Add an app and under the type, select 'Register a Globus Connect Server'
 * Create a new registration with the appropriate fields 
 * Make sure to record the client uuid since this will be needed
 * Create a new client secret and record the secret (this is the only time it will be displayed)
-* On a system with the globus connect 5.4 rpms installed, run 
+* Either:
+  * Install [globus connect 5.4](https://docs.globus.org/globus-connect-server/v5/quickstart/#gcsv5-install) on a system 
+  * Or run `podman run  -it  --rm hub.opensciencegrid.org/slate/globus-connect-v5-setup:0.1  ` to get a container with 
+    globus connect 5.4 installed
+* Use the container or the system to run
 
   ```shell
   $ globus-connect-server endpoint setup [endpoint_name] \
@@ -31,7 +43,7 @@ that the endpoint will be configured correctly.
   replacing `[endpoint_name]` with your endpoint's name, `[email]` with your contact email, 
   `[globus_id]` with your globus id (e.g. `sthapa@globusid.org`), `[org]` with your organization, and
   `[client_uuid]` with the client uuid you got from the globus.org website.
-* The setup will request the secret that you generated and then create a deployment-key.json file that you *must* keep 
+* The setup will request the secret that you generated and then create a `deployment-key.json` file that you *must* keep 
 
 Create a new file with the contents:
 
