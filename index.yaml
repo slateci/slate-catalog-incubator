@@ -215,6 +215,16 @@ entries:
   globus-compute-endpoint:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2023-05-18T19:01:51.14501289Z"
+    description: Deploy a Globus Compute endpoint into a cluster
+    digest: 21aa7273ae32e294f99294ca2c1137a0f9569358d8fcd9d59cb6aaf091d0f105
+    name: globus-compute-endpoint
+    type: application
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/globus-compute-endpoint-0.1.5/globus-compute-endpoint-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2023-05-08T22:14:47.13753722Z"
     description: Deploy a Globus Compute endpoint into a cluster
     digest: ec85eb79863b86d925412027041f762eab5a14507cc284702410701edf65eeb9
@@ -691,4 +701,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-05-16T04:34:58.923404441Z"
+generated: "2023-05-18T19:01:51.14507849Z"
