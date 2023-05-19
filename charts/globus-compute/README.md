@@ -85,7 +85,7 @@ useClientCredentials: true
 1. Update the file with the parameters covered above and install the application.
 
    ```shell
-   Uslate app install globus-compute-endpoint --group <your-group> --cluster <your-cluster> --config your-config.yaml
+   slate app install globus-compute-endpoint --group <your-group> --cluster <your-cluster> --config your-config.yaml
    ```
 
 ## Values
