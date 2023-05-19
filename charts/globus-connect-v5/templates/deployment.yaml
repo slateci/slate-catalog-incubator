@@ -35,13 +35,35 @@ spec:
         # use the requested PVC:
           claimName: {{ .Values.PVCName }}
       {{ end }}
+      {{ if and .Values.CustomIdentityMapping .Values.GlobusIdentityConfig }}
+      - name: {{ .Values.GlobusIdentityConfig }}-volume
+        secret:
+          secretName: {{ .Values.GlobusIdentityConfig }}
+          items:
+          - key: mapping
+            path: mapping
+      {{ end }}
+      {{ if .Values.GlobusRestrictConfig }}
+      - name: {{ .Values.GlobusRestrictConfig }}-volume
+        secret:
+          secretName: {{ .Values.GlobusRestrictConfig }}
+          items:
+          - key: restrictions
+            path: restrictions
+      {{ end }}
+      - name: {{ template "globus-connect.fullname" . }}-passwd
+        secret:
+          secretName: {{ .Values.GlobusPasswdSecret }}
+          items:
+          - key: passwd
+            path: passwd
       hostNetwork: true
       containers:
       - name: "gcs5"
         image: hub.opensciencegrid.org/slate/globus-connect-v5:{{ .Chart.AppVersion }}
         imagePullPolicy: Always
         command: ["/usr/local/bin/gcs-setup.sh"]
-        env: 
+        env:
         - name: GLOBUS_CLIENT_ID
           valueFrom:
             secretKeyRef:
@@ -57,6 +79,54 @@ spec:
             secretKeyRef:
               name: {{ .Values.GlobusCredentialSecret }}
               key: DEPLOYMENT_KEY
+        - name: COLLECTION_DOMAINS
+          value: {{ join " --domain " .Values.StorageConfig.Domain }}
+        - name: ALLOW_USERS
+          value: {{ join " --user-allow " .Values.StorageConfig.AllowedUsers }}
+        - name: DENY_USERS
+          value: {{ join " --user-deny " .Values.StorageConfig.DeniedUsers }}
+        {{ if eq ( lower .Values.StorageConfig.StorageType ) "posix" }}
+        - name: POSIX_ALLOW_GROUPS
+          value: {{ join " --posix-group-allow " .Values.StorageConfig.PosixConfig.AllowedGroups }}
+        - name: POSIX_DENY_GROUPS
+          value: {{ join " --posix-group-deny " .Values.StorageConfig.PosixConfig.DeniedGroups }}
+        - name: STORAGE_CREATION_ARGS
+          value: "storage-gateway create posix "
+        {{ end }}
+        {{ if eq ( lower .Values.StorageConfig.StorageType ) "ceph" }}
+        - name: STORAGE_CREATION_ARGS
+          value: "storage-gateway create ceph --s3-endpoint {{ .Values.StorageConfig.CephConfig.S3Endpoint }} --ceph-admin-key-id {{ .Values.StorageConfig.CephConfig.AdminKey }} --ceph-admin-secret-key {{ .Values.StorageConfig.CephConfig.SecertKey }}  --bucket {{ .Values.StorageConfig.CephConfig.Bucket }} "
+        {{ end }}
+        - name: COLLECTION_PATH
+          value: {{ .Values.CollectionConfig.BasePath }}
+        - name: COLLECTION_NAME
+          value {{ .Values.CollectionConfig.DisplayName }}
+        {{ if .Values.CollectionConfig.Department }}
+        - name: COLLECTION_DEPARTMENT
+          value {{ .Values.CollectionConfig.Department }}
+        {{ end }}
+        {{ if .Values.CollectionConfig.Organization }}
+        - name: COLLECTION_ORGANIZATION
+          value {{ .Values.CollectionConfig.Organization }}
+        {{ end }}
+        {{ if .Values.CollectionConfig.ContactEmail }}
+        - name: COLLECTION_EMAIL
+          value {{ .Values.CollectionConfig.ContactEmail }}
+        {{ end }}
+        {{ if .Values.CollectionConfig.ContactInfo }}
+        - name: COLLECTION_CONTACT_INFO
+          value {{ .Values.CollectionConfig.ContactInfo }}
+        {{ end }}
+        {{ if .Values.CollectionConfig.Description }}
+        - name: COLLECTION_DESCRIPTION
+          value {{ .Values.CollectionConfig.Description }}
+        {{ end }}
+        - name: COLLECTION_IDENTITY
+          value {{ .Values.CollectionConfig.IdentityId }}
+        {{ if .Values.CollectionConfig.UserMessage }}
+        - name: COLLECTION_USER_MESSAGE
+          value {{ .Values.CollectionConfig.UserMessage }}
+        {{ end }}
         {{ if .Values.NodeSetupArgs }}
         - name: NODE_SETUP_ARGS
           value: {{ .Values.NodeSetupArgs }}
@@ -71,6 +141,16 @@ spec:
         {{ if and .Values.ExternalPath .Values.PVCName }}
         - name: pvc-volume
           mountPath: {{ .Values.ExternalPath }}
+        {{ end }}
+        {{ if and .Values.CustomIdentityMapping .Values.GlobusIdentityConfig }}
+        - name: mapping-volume
+          mountPath: "/root/identity_mapping.json"
+          subPath: mapping
+        {{ end }}
+        {{ if and .Values.RestrictPaths .Values.GlobusRestrictConfig }}
+        - name: restriction-volume
+          mountPath: "/root/restrictions.json"
+          subPath: restriction
         {{ end }}
       {{ if .Values.NodeSelector }}
       nodeSelector:
