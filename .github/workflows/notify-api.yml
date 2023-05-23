@@ -10,17 +10,9 @@ on:
       - gh-pages
 
 jobs:
-  dev:
-    name: Development
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v15
-    with:
-      slate_api_endpoint: "https://api.dev.slateci.io"
-    secrets:
-      slate_api_token: "${{ secrets.SLATE_API_TOKEN_DEV }}"
-
   staging:
     name: Staging
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v15
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v16
     with:
       slate_api_endpoint: "https://api.staging.slateci.io"
     secrets:
@@ -28,7 +20,7 @@ jobs:
 
   prod:
     name: Production
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v15
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v16
     with:
       slate_api_endpoint: "https://api.slateci.io"
     secrets:
