@@ -79,17 +79,29 @@ spec:
             secretKeyRef:
               name: {{ .Values.GlobusCredentialSecret }}
               key: DEPLOYMENT_KEY
+        {{ if .Values.EndpointConfiguration }}
+        - name: ENDPOINT_CONFIGURATION
+          value: TRUE
+        {{ end }}
         - name: COLLECTION_DOMAINS
-          value: {{ join " --domain " .Values.StorageConfig.Domain }}
+          value: {{ cat "--domain" (join " - " .Values.StorageConfig.Domain | replace "-" " --domain ") }}
+        {{ if .Values.StorageConfig.AllowedUsers }}
         - name: ALLOW_USERS
-          value: {{ join " --user-allow " .Values.StorageConfig.AllowedUsers }}
+          value: {{ cat "--user-allow" (join "-" .Values.StorageConfig.AllowedUsers | replace "-" " --user-allow ") }}
+        {{ end }}
+        {{ if .Values.StorageConfig.DeniedUsers }}
         - name: DENY_USERS
-          value: {{ join " --user-deny " .Values.StorageConfig.DeniedUsers }}
+          value: {{ cat "--user-deny" (join "-" .Values.StorageConfig.DeniedUsers | replace "-" " --user-deny ") }}
+        {{ end }}
         {{ if eq ( lower .Values.StorageConfig.StorageType ) "posix" }}
+        {{ if .Values.StorageConfig.PosixConfig.AllowedGroups }}
         - name: POSIX_ALLOW_GROUPS
-          value: {{ join " --posix-group-allow " .Values.StorageConfig.PosixConfig.AllowedGroups }}
+          value: {{ cat "--posix-group-allow" (join "-" .Values.StorageConfig.PosixConfig.AllowedGroups | replace "-" " --posix-group-allow ") }}
+        {{ end }}
+        {{ if .Values.StorageConfig.PosixConfig.DeniedGroups }}
         - name: POSIX_DENY_GROUPS
-          value: {{ join " --posix-group-deny " .Values.StorageConfig.PosixConfig.DeniedGroups }}
+          value: {{ cat "--posix-group-deny" (join "-" .Values.StorageConfig.PosixConfig.DeniedGroups | replace "-" " --posix-group-deny ") }}
+        {{ end }}
         - name: STORAGE_CREATION_ARGS
           value: "storage-gateway create posix "
         {{ end }}
@@ -100,40 +112,43 @@ spec:
         - name: COLLECTION_PATH
           value: {{ .Values.CollectionConfig.BasePath }}
         - name: COLLECTION_NAME
-          value {{ .Values.CollectionConfig.DisplayName }}
+          value: {{ .Values.CollectionConfig.DisplayName }}
         {{ if .Values.CollectionConfig.Department }}
         - name: COLLECTION_DEPARTMENT
-          value {{ .Values.CollectionConfig.Department }}
+          value: {{ .Values.CollectionConfig.Department }}
         {{ end }}
         {{ if .Values.CollectionConfig.Organization }}
         - name: COLLECTION_ORGANIZATION
-          value {{ .Values.CollectionConfig.Organization }}
+          value: {{ .Values.CollectionConfig.Organization }}
         {{ end }}
         {{ if .Values.CollectionConfig.ContactEmail }}
         - name: COLLECTION_EMAIL
-          value {{ .Values.CollectionConfig.ContactEmail }}
+          value: {{ .Values.CollectionConfig.ContactEmail }}
         {{ end }}
         {{ if .Values.CollectionConfig.ContactInfo }}
         - name: COLLECTION_CONTACT_INFO
-          value {{ .Values.CollectionConfig.ContactInfo }}
+          value: {{ .Values.CollectionConfig.ContactInfo }}
         {{ end }}
         {{ if .Values.CollectionConfig.Description }}
         - name: COLLECTION_DESCRIPTION
-          value {{ .Values.CollectionConfig.Description }}
+          value: {{ .Values.CollectionConfig.Description }}
         {{ end }}
         - name: COLLECTION_IDENTITY
-          value {{ .Values.CollectionConfig.IdentityId }}
+          value: {{ .Values.CollectionConfig.IdentityId }}
         {{ if .Values.CollectionConfig.UserMessage }}
         - name: COLLECTION_USER_MESSAGE
-          value {{ .Values.CollectionConfig.UserMessage }}
+          value: {{ .Values.CollectionConfig.UserMessage }}
         {{ end }}
         {{ if .Values.NodeSetupArgs }}
         - name: NODE_SETUP_ARGS
           value: {{ .Values.NodeSetupArgs }}
         {{ end }}
         - name: TERM
-          value: 'xterm'
+          value: "xterm"
         volumeMounts:
+        - name: {{ template "globus-connect.fullname" . }}-passwd
+          mountPath: "/root/passwd"
+          subPath: passwd        
         {{ if and .Values.ExternalPath .Values.InternalPath }}
         - name: dfs-volume
           mountPath: {{ .Values.ExternalPath }}

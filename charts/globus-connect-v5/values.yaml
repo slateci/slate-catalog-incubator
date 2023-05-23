@@ -29,7 +29,6 @@ NodeSetupArgs: ""
 # The following file must contain usernames and encrypted passwords for any 
 # users who may log in to the system. 
 # 
-# 
 # The file must follow passwd(5) format. 
 #
 # Once this file has been created, store it as a SLATE secret with:
@@ -38,6 +37,7 @@ NodeSetupArgs: ""
 #     --from-file <filename>
 GlobusPasswdSecret: globus-passwd # maps to <secret-name> as in the above
 
+
 # the following file should include an identity mapping for globus
 # See https://docs.globus.org/globus-connect-server/v5/identity-mapping-guide/ 
 # for instructions on how to format the file
@@ -45,10 +45,12 @@ GlobusIdentityConfig: globus-identity-mapping
 
 GlobusRestrictConfig: globus-restrict-config 
 
+EndpointConfiguration: false # automatically configure endpoint
 StorageConfig:
   StorageType: "posix"  # posix or ceph
-  AllowedUsers: []      # comma separated list of users allowed
-  DeniedUsers: []       # comma separated list of users blocked
+  DisplayName: ""       # name for storage collection
+  AllowedUsers: []      # array with users allowed to access the gateway
+  DeniedUsers: []       # array with users blocked from accessing gateway
   Domain: []            # allowed domains for users
   RestrictPaths: false  # Use GlobusRestrictConfig for restrictPaths 
   CustomIdentityMapping: false  # Use GlobusIdentityConfig for restrictPaths 
