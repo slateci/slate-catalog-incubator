@@ -116,6 +116,14 @@ shell       This is  the  program  to  run  at  login  (if  empty,  use
 Note that only name, password, UID, and directory are respected in the current
 release.
 
+Once you have a passwd file setup, you can create a secret using:
+
+```shell
+$ slate secret create <secret-name> --group <group> --cluster <cluster> \
+    --from-file <filename>
+```
+
+
 ### Deploying 
 To deploy the chart, first get the values file and store it:
 
