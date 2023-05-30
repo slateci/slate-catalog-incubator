@@ -22,6 +22,7 @@ spec:
         instance: {{ .Values.Instance | quote }}
         instanceID: {{ .Values.SLATE.Instance.ID | quote  }}
     spec:
+      terminationGracePeriodSeconds: 60
       volumes:
       {{ if .Values.InternalPath }}
       - name: dfs-volume
@@ -63,6 +64,10 @@ spec:
         image: hub.opensciencegrid.org/slate/globus-connect-v5:{{ .Chart.AppVersion }}
         imagePullPolicy: Always
         command: ["/usr/local/bin/gcs-setup.sh"]
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/usr/local/bin/stop-endpoint.sh"]
         env:
         - name: GLOBUS_CLIENT_ID
           valueFrom:
