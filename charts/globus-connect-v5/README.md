@@ -176,6 +176,7 @@ to create a collection that will be shared from the endpoint.  See
 [this page](https://docs.globus.org/globus-connect-server/v5/reference/collection/create/) 
 for more details on the options that Globus supports.
 
+You can view endpoints that you control on the [globus website](https://app.globus.org/collections?scope=administered-by-me).
 
 ### Automatic Configuration (Experimental)
 
