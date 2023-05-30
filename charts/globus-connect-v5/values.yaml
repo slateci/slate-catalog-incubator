@@ -78,7 +78,7 @@ CollectionConfig:
 # The path at which the storage should be mounted. 
 ExternalPath: /export
 # The path for a backing filesystem to be mounted from the host system. 
-InternalPath: /mnt
+InternalPath: /tmp
 # The name of a PersistentVolumeClaim which should be mounted as backing storage.
 PVCName: 
 # If set, use a nodeSelector to run only on a matching nodes. 

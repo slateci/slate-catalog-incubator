@@ -21,7 +21,7 @@ that the endpoint will be configured correctly.
    * Click on the `Advanced Registration` option
    * Select `the none of the above - create a new project` option and press `Continue`
    * Fill in the information on the new project and press Continue
-   * Select a globus id and sign in if requested to
+   * Select a globus id (i.e. your username when logging into globus.org) and sign in if requested to
    * Once you get to the App Registration page, click Cancel
    * You'll be be back at the Developers page and should see the new project on the column on the right, select it
 * Add an app and under the type, select 'Register a Globus Connect Server'
@@ -30,7 +30,7 @@ that the endpoint will be configured correctly.
 * Create a new client secret and record the secret (this is the only time it will be displayed)
 * Either:
   * Install [globus connect 5.4](https://docs.globus.org/globus-connect-server/v5/quickstart/#gcsv5-install) on a system 
-  * Or run `podman run  -it  --rm hub.opensciencegrid.org/slate/globus-connect-v5-setup:0.1  ` to get a container with 
+  * Or run `docker run  -it  --rm hub.opensciencegrid.org/slate/globus-connect-v5-setup:0.1  ` to get a container with 
     globus connect 5.4 installed
 * Use the container or the system to run
 
@@ -43,6 +43,7 @@ that the endpoint will be configured correctly.
   replacing `[endpoint_name]` with your endpoint's name (you can make one up), `[email]` with your contact email, 
   `[globus_id]` with your globus login id (e.g. `sthapa@globusid.org`), `[org]` with your organization, and
   `[client_uuid]` with the client uuid you got from the globus.org website.
+* The setup procedure may take a while to complete due to some of the steps involved.  
 * The setup will request the secret that you generated and then create a `deployment-key.json` file that you *must* keep
 
 
@@ -54,6 +55,9 @@ GLOBUS_CLIENT_SECRET=<secret>
 DEPLOYMENT_KEY=<contents of deployment-key.json>
 ```
 
+Make sure that the file that you have created does not have any empty files,
+otherwise SLATE will give an error when creating a secret using this file.
+
 And then create the credential with:
 
 
@@ -64,14 +68,22 @@ $ slate secret create <secret-name> --group <group> --cluster <cluster> \
 
 
 ### Generating the passwd(5) file 
+
+The user entries in this file will be added to the container.  The Globus endpoint
+will map incoming users to the users in the passwd file in order
+to access and write files.   I.e. this file will be used to create users
+that globus connect can use when doing transfers.
+
+
 This chart will consume a file in the format of /etc/passwd. This
 hash will be stored as a SLATE secret (re-encrypted in DynamoDB). 
+
 
 You will need to provide an extended passwd(5)-format file with a dummy
 placeholder in the second field (e.g. `x`):
 
 ```
-   slateci:x:1001:1001:SLATE CI:/home/slateci:
+   slateci:x:1001:1001:SLATE CI:/home/slateci:/bin/bash
 ```
 
 You can then copy users out of /etc/passwd or create them by hand. From the
@@ -162,8 +174,9 @@ id.  It should be an uuid that's similar to `66b11297-368a-41cb-bbe4-67b3772cf85
 
 In order to configure the endpoint:
 
+* View the logs for the deployed endpoint and get the endpoint id that is printed out in there
 * Login to a server with the Globus connect binaries or run 
-`podman run -it --rm hub.opensciencegrid.org/slate/globus-connect-v5-setup:0.1` to 
+`docker run -it --rm hub.opensciencegrid.org/slate/globus-connect-v5-setup:0.1` to 
 get a container with the necessary binaries
 * Run `globus-connect-server login [endpoint-id]`
 * Run `globus-connect-server storage-gateway create [options]` with the appropriate options
