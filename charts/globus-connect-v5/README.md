@@ -40,8 +40,8 @@ that the endpoint will be configured correctly.
         -c [client_uuid]
   ``` 
 
-  replacing `[endpoint_name]` with your endpoint's name, `[email]` with your contact email, 
-  `[globus_id]` with your globus id (e.g. `sthapa@globusid.org`), `[org]` with your organization, and
+  replacing `[endpoint_name]` with your endpoint's name (you can make one up), `[email]` with your contact email, 
+  `[globus_id]` with your globus login id (e.g. `sthapa@globusid.org`), `[org]` with your organization, and
   `[client_uuid]` with the client uuid you got from the globus.org website.
 * The setup will request the secret that you generated and then create a `deployment-key.json` file that you *must* keep
 
@@ -120,7 +120,7 @@ Once you have a passwd file setup, you can create a secret using:
 
 ```shell
 $ slate secret create <secret-name> --group <group> --cluster <cluster> \
-    --from-file <filename>
+    --from-file passwd
 ```
 
 
@@ -131,10 +131,10 @@ To deploy the chart, first get the values file and store it:
 slate app get-conf --dev globus-connect-v5 > gcs.yaml
 ```
 
-Edit to your liking (notably the GlobusPasswdSecret and GlobusConfigFile must match what you have created in previous steps) and deploy with:
+Edit to your liking (notably the GlobusCredentialSecret and GlobusPasswdSecret must match what you have created in previous steps) and deploy with:
 
 ```
-slate app install --cluster <cluster> --group <group> globus-connect-v5 --conf gcs.yaml
+slate app install --cluster <cluster> --group <group> --dev globus-connect-v5 --conf gcs.yaml
 ```
 
 This will return an instance ID, please note this as it will be needed later.
