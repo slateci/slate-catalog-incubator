@@ -256,6 +256,15 @@ entries:
   globus-connect-v5:
   - apiVersion: v1
     appVersion: "0.5"
+    created: "2023-06-01T21:14:20.705608698Z"
+    description: Globus Connect data transfer service
+    digest: 32b10efe39578039fd33c7234d84363b04b248a6b1920a5b32c9b3b5ff39460f
+    name: globus-connect-v5
+    urls:
+    - https://github.com/slateci/slate-catalog-incubator/releases/download/globus-connect-v5-0.12/globus-connect-v5-0.12.tgz
+    version: "0.12"
+  - apiVersion: v1
+    appVersion: "0.5"
     created: "2023-05-30T19:16:55.860689536Z"
     description: Globus Connect data transfer service
     digest: 351287c577df45fc3e8fbe74055bf38e43b48005eb68f1310676cf2ee460b40c
@@ -747,4 +756,4 @@ entries:
     urls:
     - https://github.com/slateci/slate-catalog-incubator/releases/download/telegraf-0.6.0/telegraf-0.6.0.tgz
     version: 0.6.0
-generated: "2023-05-30T19:16:55.861157043Z"
+generated: "2023-06-01T21:14:20.706009822Z"
