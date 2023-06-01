@@ -5,6 +5,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "globus-connect.fullname" . }}
+  labels:
+    app: {{ template "globus-connect.fullname" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance | quote }}
+    instanceID: {{ .Values.SLATE.Instance.ID | quote  }}
 spec:
   selector:
     matchLabels:
