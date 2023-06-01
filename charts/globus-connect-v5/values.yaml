@@ -34,32 +34,49 @@ NodeSetupArgs: ""
 # Once this file has been created, store it as a SLATE secret with:
 #
 #   slate secret create <secret-name> --group <group> --cluster <cluster> \
-#     --from-file <filename>
+#     --from-file passwd=<filename>
 GlobusPasswdSecret: globus-passwd # maps to <secret-name> as in the above
 
 
+
+
+# The path at which the storage should be mounted. 
+ExternalPath: /export
+# The path for a backing filesystem to be mounted from the host system. 
+InternalPath: /tmp
+# The name of a PersistentVolumeClaim which should be mounted as backing storage.
+PVCName: 
+
+# The following settings only need to be changed if you
+# want to use the experimental auto-configuration features
+#
+# the GlobusIdentityConfig and GlobusRestrictConfig settings are only
+# used for auto-configuration and don't need to be changed for the 
+# default settings
 # the following file should include an identity mapping for globus
 # See https://docs.globus.org/globus-connect-server/v5/identity-mapping-guide/ 
 # for instructions on how to format the file
 GlobusIdentityConfig: globus-identity-mapping 
-
+#
 GlobusRestrictConfig: globus-restrict-config 
 
-EndpointConfiguration: false # automatically configure endpoint
+EndpointConfiguration: false # don't automatically configure endpoint
+
+# ignore the following unless you're using auto-configuration
 StorageConfig:
-  StorageType: "posix"  # posix or ceph
+  StorageType: "posix"  # posix or ceph, ceph will have globus use a S3 endpoint
   DisplayName: ""       # name for storage collection
   AllowedUsers: []      # array with users allowed to access the gateway
   DeniedUsers: []       # array with users blocked from accessing gateway
   Domain: []            # allowed domains for users
   RestrictPaths: false  # Use GlobusRestrictConfig for restrictPaths 
   CustomIdentityMapping: false  # Use GlobusIdentityConfig for restrictPaths 
-  CephConfig:
+  CephConfig:           # only needed if StorageType is set to ceph
       S3Endpoint: ""
       AdminKey:  ""
       SecretKey: ""
       Bucket: ""
-  PosixConfig:
+  PosixConfig:          # only needed if StorageType is set to posix
       DeniedGroups: []
       AllowedGroups: []
 
@@ -74,13 +91,6 @@ CollectionConfig:
   IdentityId: ""
   UserMessage: ""
 
-
-# The path at which the storage should be mounted. 
-ExternalPath: /export
-# The path for a backing filesystem to be mounted from the host system. 
-InternalPath: /mnt
-# The name of a PersistentVolumeClaim which should be mounted as backing storage.
-PVCName: 
 # If set, use a nodeSelector to run only on a matching nodes. 
 # This is useful when only certain nodes on the cluster mount the appropriate 
 # backing filesystem. It may be desirable to turn this off when using a PVC as
