@@ -61,7 +61,9 @@ GlobusIdentityConfig: globus-identity-mapping
 GlobusRestrictConfig: globus-restrict-config 
 
 EndpointConfiguration: false # don't automatically configure endpoint
-  StorageConfig:
+
+# ignore the following unless you're using auto-configuration
+StorageConfig:
   StorageType: "posix"  # posix or ceph, ceph will have globus use a S3 endpoint
   DisplayName: ""       # name for storage collection
   AllowedUsers: []      # array with users allowed to access the gateway
