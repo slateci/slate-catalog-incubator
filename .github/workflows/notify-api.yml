@@ -12,7 +12,7 @@ on:
 jobs:
   staging:
     name: Staging
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v16
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v17
     with:
       slate_api_endpoint: "https://api.staging.slateci.io"
     secrets:
@@ -20,7 +20,7 @@ jobs:
 
   prod:
     name: Production
-    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v16
+    uses: slateci/github-actions/.github/workflows/slate-updateapps.yml@v17
     with:
       slate_api_endpoint: "https://api.slateci.io"
     secrets:
